@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e096ca02b96be20139e62d3d75d04297",
+    "content-hash": "7472e0dfe3f5030f222b22cbc21758c9",
     "packages": [
         {
             "name": "andrey-helldar/xml-core",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andrey-helldar/xml-core.git",
-                "reference": "d36f24b028713d0dbcf22d75593ceb7386c3a9ca"
+                "reference": "78302c4db7d62c7c68404055719adf81734af1df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andrey-helldar/xml-core/zipball/d36f24b028713d0dbcf22d75593ceb7386c3a9ca",
-                "reference": "d36f24b028713d0dbcf22d75593ceb7386c3a9ca",
+                "url": "https://api.github.com/repos/andrey-helldar/xml-core/zipball/78302c4db7d62c7c68404055719adf81734af1df",
+                "reference": "78302c4db7d62c7c68404055719adf81734af1df",
                 "shasum": ""
             },
             "require": {
@@ -59,7 +59,7 @@
                 "core",
                 "xml"
             ],
-            "time": "2019-03-28T13:27:06+00:00"
+            "time": "2019-03-28T15:50:08+00:00"
         },
         {
             "name": "doctrine/inflector",
