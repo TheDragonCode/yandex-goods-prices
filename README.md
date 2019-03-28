@@ -132,6 +132,24 @@ Saved as:
 </yml_catalog>
 ```
 
+You can also use an array for a `categories()`, `currencies()` and `offers` methods:
+```php
+$currencies = [];
+
+for ($i = 0; $i < 10; $i++) {
+    $currency = (new Currency)->id('USD')->rate($i);
+    
+    array_push($currencies, $currency);
+}
+
+(new YandexGoodsPrices)
+    ->categories($category_1, $category_2, $categories)
+    ->currencies($currency_rur, $currencies)
+    ->offers($offers, $offer_1, $offer_2)
+    // ...
+```
+
+
 ## License
 
 This package is released under the [MIT License](LICENSE).
