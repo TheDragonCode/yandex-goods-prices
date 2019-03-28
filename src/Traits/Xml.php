@@ -18,4 +18,13 @@ trait Xml
 
         return $this->doc->makeItem($name, $value, $attributes);
     }
+
+    private function xmlAppendChild(DOMElement &$parent, DOMElement $child, bool $skip_empty = true)
+    {
+        if ($skip_empty && !$child) {
+            return;
+        }
+
+        $parent->appendChild($child);
+    }
 }

@@ -12,7 +12,7 @@ class Offer implements XmlItems
 
     private $id;
 
-    private $available = true;
+    private $available = 'true';
 
     private $url;
 
@@ -26,16 +26,16 @@ class Offer implements XmlItems
 
     private $name;
 
-    public function id(int $id): self
+    public function id(string $id): self
     {
-        $this->id = $id;
+        $this->id = \trim((string) $id);
 
         return $this;
     }
 
     public function available(bool $value): self
     {
-        $this->available = $value;
+        $this->available = $value ? 'true' : 'false';
 
         return $this;
     }
@@ -95,12 +95,12 @@ class Offer implements XmlItems
 
         $delivery = $this->xmlItem('delivery', $this->delivery);
 
-        $offer->appendChild($category_id);
-        $offer->appendChild($currency_id);
-        $offer->appendChild($delivery);
-        $offer->appendChild($name);
-        $offer->appendChild($price);
-        $offer->appendChild($url);
+        $this->xmlAppendChild($offer, $category_id);
+        $this->xmlAppendChild($offer, $currency_id);
+        $this->xmlAppendChild($offer, $delivery);
+        $this->xmlAppendChild($offer, $name);
+        $this->xmlAppendChild($offer, $price);
+        $this->xmlAppendChild($offer, $url);
 
         return $offer;
     }

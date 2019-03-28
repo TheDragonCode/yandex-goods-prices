@@ -61,29 +61,38 @@ class YandexGoodsPrices
         return $this;
     }
 
-    public function currencies(Currency ...$currencies): self
+    /**
+     * @param array|\Helldar\Yandex\GoodsPrices\Services\Currency ...$items
+     *
+     * @return \Helldar\Yandex\GoodsPrices\Services\YandexGoodsPrices
+     */
+    public function currencies(...$items): self
     {
-        foreach ($currencies as $currency) {
-            $this->xml->appendChild($this->currencies, $currency->get());
-        }
+        $this->each(Currency::class, $items, $this->currencies);
 
         return $this;
     }
 
-    public function categories(Category ...$categories): self
+    /**
+     * @param array|\Helldar\Yandex\GoodsPrices\Services\Category ...$items
+     *
+     * @return \Helldar\Yandex\GoodsPrices\Services\YandexGoodsPrices
+     */
+    public function categories(...$items): self
     {
-        foreach ($categories as $category) {
-            $this->xml->appendChild($this->categories, $category->get());
-        }
+        $this->each(Category::class, $items, $this->categories);
 
         return $this;
     }
 
-    public function offers(Offer ...$offers): self
+    /**
+     * @param array|\Helldar\Yandex\GoodsPrices\Services\Offer ...$items
+     *
+     * @return \Helldar\Yandex\GoodsPrices\Services\YandexGoodsPrices
+     */
+    public function offers(...$items): self
     {
-        foreach ($offers as $offer) {
-            $this->xml->appendChild($this->offers, $offer->get());
-        }
+        $this->each(Offer::class, $items, $this->offers);
 
         return $this;
     }
@@ -110,7 +119,7 @@ class YandexGoodsPrices
     {
         $root          = 'yml_catalog';
         $attributes    = ['date' => \date('Y-m-d H:i')];
-        $format_output = Config::get('yandex_goods_prices.format_output', true);
+        $format_output = Config::get('yandex_goods_prices.format_output', false);
 
         $this->xml = Xml::init($root, $attributes, $format_output)
             ->doctype('yml_catalog', null, 'shops.dtd');
@@ -118,5 +127,18 @@ class YandexGoodsPrices
         $this->categories = $this->xml->makeItem('categories');
         $this->currencies = $this->xml->makeItem('currencies');
         $this->offers     = $this->xml->makeItem('offers');
+    }
+
+    private function each($instance, $items, &$parent)
+    {
+        foreach ($items as $item) {
+            if ($item instanceof $instance) {
+                $this->xml->appendChild($parent, $item->get());
+            } elseif (\is_array($item)) {
+                foreach ($item as $element) {
+                    $this->xml->appendChild($parent, $element->get());
+                }
+            }
+        }
     }
 }
