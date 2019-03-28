@@ -123,7 +123,6 @@ class YandexGoodsPricesTest extends TestCase
             ->url('http://example.com')
             ->save($filename);
 
-
         $source = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE yml_catalog SYSTEM "shops.dtd">
