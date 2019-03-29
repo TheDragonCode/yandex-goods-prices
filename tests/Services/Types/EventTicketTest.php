@@ -5,7 +5,7 @@ namespace Tests\Services\Types;
 use Carbon\Carbon;
 use DOMDocument;
 use Exception;
-use Helldar\Yandex\GoodsPrices\Services\Items\Types\EventTicket;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\EventTicket;
 use Tests\TestCase;
 
 class EventTicketTest extends TestCase

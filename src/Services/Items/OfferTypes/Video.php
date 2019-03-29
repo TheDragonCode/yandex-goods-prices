@@ -1,6 +1,6 @@
 <?php
 
-namespace Helldar\Yandex\GoodsPrices\Services\Items\Types;
+namespace Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes;
 
 use Helldar\Yandex\GoodsPrices\Helpers\Variables;
 use Illuminate\Validation\Rule;
@@ -27,7 +27,7 @@ class Video extends BaseType
     /**
      * @param array|string $values
      *
-     * @return \Helldar\Yandex\GoodsPrices\Services\Items\Types\Video
+     * @return \Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Video
      */
     public function starring($values): self
     {

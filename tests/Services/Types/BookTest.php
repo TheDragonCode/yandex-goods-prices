@@ -4,7 +4,7 @@ namespace Tests\Services\Types;
 
 use DOMDocument;
 use Exception;
-use Helldar\Yandex\GoodsPrices\Services\Items\Types\Book;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Book;
 use Tests\TestCase;
 
 class BookTest extends TestCase

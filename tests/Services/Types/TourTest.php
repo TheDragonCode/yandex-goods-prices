@@ -5,7 +5,7 @@ namespace Tests\Services\Types;
 use Carbon\Carbon;
 use DOMDocument;
 use Exception;
-use Helldar\Yandex\GoodsPrices\Services\Items\Types\Tour;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Tour;
 use Tests\TestCase;
 
 class TourTest extends TestCase

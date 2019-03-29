@@ -37,7 +37,7 @@ class Currency implements Item
     /**
      * @param string|float $rate
      *
-     * @return \Helldar\Yandex\GoodsPrices\Services\Currency
+     * @return \Helldar\Yandex\GoodsPrices\Services\Items\Currency
      */
     public function rate($rate = 'СВ'): self
     {

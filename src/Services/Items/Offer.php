@@ -2,13 +2,13 @@
 
 namespace Helldar\Yandex\GoodsPrices\Services\Items;
 
-use Helldar\Yandex\GoodsPrices\Services\Items\Types\AudioBook;
-use Helldar\Yandex\GoodsPrices\Services\Items\Types\Book;
-use Helldar\Yandex\GoodsPrices\Services\Items\Types\EventTicket;
-use Helldar\Yandex\GoodsPrices\Services\Items\Types\Music;
-use Helldar\Yandex\GoodsPrices\Services\Items\Types\Other;
-use Helldar\Yandex\GoodsPrices\Services\Items\Types\Tour;
-use Helldar\Yandex\GoodsPrices\Services\Items\Types\Video;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\AudioBook;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Book;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\EventTicket;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Music;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Other;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Tour;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Video;
 
 class Offer
 {

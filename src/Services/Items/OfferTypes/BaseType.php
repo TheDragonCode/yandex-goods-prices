@@ -1,6 +1,6 @@
 <?php
 
-namespace Helldar\Yandex\GoodsPrices\Services\Items\Types;
+namespace Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes;
 
 use DOMElement;
 use Helldar\Yandex\GoodsPrices\Interfaces\Item;

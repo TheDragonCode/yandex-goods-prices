@@ -1,6 +1,6 @@
 <?php
 
-namespace Helldar\Yandex\GoodsPrices\Services\Items\Types;
+namespace Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes;
 
 /**
  * @see https://yandex.ru/support/webmaster/goods-prices/technical-requirements.html#tag_11__audiobook
@@ -66,7 +66,7 @@ class AudioBook extends BaseType
     /**
      * @param array|string $values
      *
-     * @return \Helldar\Yandex\GoodsPrices\Services\Items\Types\AudioBook
+     * @return \Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\AudioBook
      */
     public function performedBy($values): self
     {

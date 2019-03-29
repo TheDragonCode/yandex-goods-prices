@@ -4,7 +4,7 @@ namespace Tests\Services\Types;
 
 use DOMDocument;
 use Exception;
-use Helldar\Yandex\GoodsPrices\Services\Items\Types\Music;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Music;
 use Tests\TestCase;
 
 class MusicTest extends TestCase

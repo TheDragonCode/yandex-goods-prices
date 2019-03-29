@@ -4,7 +4,7 @@ namespace Tests\Services\Types;
 
 use DOMDocument;
 use Exception;
-use Helldar\Yandex\GoodsPrices\Services\Items\Types\Video;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Video;
 use Tests\TestCase;
 
 class VideoTest extends TestCase
