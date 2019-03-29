@@ -52,10 +52,10 @@ php artisan vendor:publish --provider="Helldar\Yandex\GoodsPrices\ServiceProvide
 ## Using
 
 ```php
-$currency = \app('yandex_goods_prices')->currency()->id('RUB')->rate(2);
-$category = \app('yandex_goods_prices')->category()->id(1)->name('foo');
+$currency = app('yandex_goods_prices')->currency()->id('RUB')->rate(2);
+$category = app('yandex_goods_prices')->category()->id(1)->name('foo');
 
-$offer = \app('yandex_goods_prices')->offer()->other()
+$offer = app('yandex_goods_prices')->offer()->other()
     ->id(1234)
     ->available()
     ->categoryId(2)
@@ -74,7 +74,7 @@ $offer = \app('yandex_goods_prices')->offer()->other()
     ->vendor('FOO')
     ->vendorCode('foo');
 
-\app('yandex_goods_prices')->service()
+app('yandex_goods_prices')->service()
     ->categories($category, $category)
     ->currencies($currency)
     ->offers($offer)
@@ -128,12 +128,12 @@ You can also use an array for a `categories()`, `currencies()` and `offers` meth
 $currencies = [];
 
 for ($i = 0; $i < 10; $i++) {
-    $currency = \app('yandex_goods_prices')->currency()->id('USD')->rate($i);
+    $currency = app('yandex_goods_prices')->currency()->id('USD')->rate($i);
     
     array_push($currencies, $currency);
 }
 
-\app('yandex_goods_prices')->service()
+app('yandex_goods_prices')->service()
     ->categories($category_1, $category_2, $categories)
     ->currencies($currency_rur, $currencies)
     ->offers($offers, $offer_1, $offer_2)
@@ -155,19 +155,19 @@ You can also see the implementation in the [tests](tests) and read the [official
 
 To access a type with methods available to it, use the call:
 ```php
-\app('yandex_goods_prices')->offer()->audioBook()
+app('yandex_goods_prices')->offer()->audioBook()
     
-\app('yandex_goods_prices')->offer()->book()
+app('yandex_goods_prices')->offer()->book()
     
-\app('yandex_goods_prices')->offer()->eventTicket()
+app('yandex_goods_prices')->offer()->eventTicket()
     
-\app('yandex_goods_prices')->offer()->music()
+app('yandex_goods_prices')->offer()->music()
     
-\app('yandex_goods_prices')->offer()->tour()
+app('yandex_goods_prices')->offer()->tour()
     
-\app('yandex_goods_prices')->offer()->video()
+app('yandex_goods_prices')->offer()->video()
     
-\app('yandex_goods_prices')->offer()->other()
+app('yandex_goods_prices')->offer()->other()
 ```
 
 
