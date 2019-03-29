@@ -2,7 +2,6 @@
 
 namespace Helldar\Yandex\GoodsPrices\Services\Items;
 
-use DOMElement;
 use Helldar\Yandex\GoodsPrices\Services\Items\Types\AudioBook;
 use Helldar\Yandex\GoodsPrices\Services\Items\Types\Book;
 use Helldar\Yandex\GoodsPrices\Services\Items\Types\EventTicket;
