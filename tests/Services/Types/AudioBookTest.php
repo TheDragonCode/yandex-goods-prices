@@ -1,126 +1,15 @@
 <?php
 
-namespace Helldar\Yandex\GoodsPrices\Services\Items\Types;
+namespace Tests\Services\Types;
 
 use DOMDocument;
 use Exception;
+use Helldar\Yandex\GoodsPrices\Services\Items\Types\AudioBook;
 use Tests\TestCase;
 
 class AudioBookTest extends TestCase
 {
-    public function testFormat()
-    {
-        $item = (new AudioBook)->format('foo');
-
-        $this->assertTrue($item instanceof AudioBook);
-    }
-
-    public function testYear()
-    {
-        $item = (new AudioBook)->year(2019);
-
-        $this->assertTrue($item instanceof AudioBook);
-    }
-
-    public function testTableOfContents()
-    {
-        $item = (new AudioBook)->tableOfContents('foo');
-
-        $this->assertTrue($item instanceof AudioBook);
-    }
-
-    public function testPublisher()
-    {
-        $item = (new AudioBook)->publisher('foo');
-
-        $this->assertTrue($item instanceof AudioBook);
-    }
-
-    public function testPart()
-    {
-        $item = (new AudioBook)->part(4);
-
-        $this->assertTrue($item instanceof AudioBook);
-    }
-
-    public function testDescription()
-    {
-        $item = (new AudioBook)->description('foo');
-
-        $this->assertTrue($item instanceof AudioBook);
-    }
-
-    public function testVolume()
-    {
-        $item = (new AudioBook)->volume(4);
-
-        $this->assertTrue($item instanceof AudioBook);
-    }
-
-    public function testIsbn()
-    {
-        $item = (new AudioBook)->isbn('foo');
-
-        $this->assertTrue($item instanceof AudioBook);
-    }
-
-    public function testPerformanceType()
-    {
-        $item = (new AudioBook)->performanceType('foo');
-
-        $this->assertTrue($item instanceof AudioBook);
-    }
-
-    public function testRecordingLength()
-    {
-        $item = (new AudioBook)->recordingLength('02:03');
-
-        $this->assertTrue($item instanceof AudioBook);
-    }
-
-    public function testName()
-    {
-        $item = (new AudioBook)->name('foo');
-
-        $this->assertTrue($item instanceof AudioBook);
-    }
-
-    public function testSeries()
-    {
-        $item = (new AudioBook)->series('foo');
-
-        $this->assertTrue($item instanceof AudioBook);
-    }
-
-    public function testPerformedBy()
-    {
-        $item = (new AudioBook)->performedBy('foo');
-
-        $this->assertTrue($item instanceof AudioBook);
-    }
-
-    public function testStorage()
-    {
-        $item = (new AudioBook)->storage('foo');
-
-        $this->assertTrue($item instanceof AudioBook);
-    }
-
-    public function testAuthor()
-    {
-        $item = (new AudioBook)->author('foo');
-
-        $this->assertTrue($item instanceof AudioBook);
-    }
-
-    public function testLanguage()
-    {
-        $item = (new AudioBook)->language('foo');
-
-        $this->assertTrue($item instanceof AudioBook);
-    }
-
-    public function testSuccessFillabled()
+    public function testSuccess()
     {
         $actual = (new AudioBook)
             ->id(1234)
@@ -131,7 +20,20 @@ class AudioBookTest extends TestCase
             ->categoryId(2)
             ->name('foo')
             ->author('bar')
+            ->publisher('foo')
+            ->series('foo')
             ->year(2019)
+            ->isbn('978-5-94878-004-7')
+            ->description('foo')
+            ->performedBy('foo')
+            ->performanceType('foo')
+            ->language('foo')
+            ->volume(4)
+            ->part(3)
+            ->format('DVD')
+            ->storage('PDF')
+            ->recordingLength('200.30')
+            ->tableOfContents('foo')
             ->get();
 
         $source = <<<XML
@@ -143,7 +45,20 @@ class AudioBookTest extends TestCase
     <categoryId>2</categoryId>
     <name>foo</name>
     <author>bar</author>
+    <publisher>foo</publisher>
+    <series>foo</series>
     <year>2019</year>
+    <ISBN>978-5-94878-004-7</ISBN>
+    <description>foo</description>
+    <performed_by>foo</performed_by>
+    <performance_type>foo</performance_type>
+    <language>foo</language>
+    <volume>4</volume>
+    <part>3</part>
+    <format>DVD</format>
+    <storage>PDF</storage>
+    <recording_length>200.30</recording_length>
+    <table_of_contents>foo</table_of_contents>
 </offer>
 XML;
 
@@ -153,7 +68,7 @@ XML;
         $this->assertEqualXMLStructure($expected->documentElement, $actual, true);
     }
 
-    public function testFailFillabled()
+    public function testFailed()
     {
         try {
             (new AudioBook)

@@ -63,8 +63,15 @@ class AudioBook extends BaseType
         return $this;
     }
 
-    public function performedBy(string $value): self
+    /**
+     * @param array|string $values
+     *
+     * @return \Helldar\Yandex\GoodsPrices\Services\Items\Types\AudioBook
+     */
+    public function performedBy($values): self
     {
+        $value = \is_array($values) ? \implode(', ', $values) : $values;
+
         $this->addItem('performed_by', $value);
 
         return $this;
@@ -129,20 +136,22 @@ class AudioBook extends BaseType
     protected function rules(): array
     {
         return [
-            'author'      => ['string', 'max:255'],
-            'name'        => ['string', 'max:255'],
-            'publisher'   => ['string', 'max:255'],
-            'series'      => ['string', 'max:255'],
-            'year'        => ['integer', 'max:' . \date('Y')],
-            'ISBN'        => ['string'],
-            'description' => ['string', 'max:175'],
-            'volume'      => ['integer', 'min:0', 'gte:part'],
-            'part'        => ['integer', 'min:0', 'required_id:volume'],
-            'language'    => ['string', 'max:255'],
-            'format'      => ['string', 'max:255'],
-            'storage'     => ['string', 'max:255'],
+            'author'           => ['string', 'max:255'],
+            'name'             => ['string', 'max:255'],
+            'publisher'        => ['string', 'max:255'],
+            'series'           => ['string', 'max:255'],
+            'year'             => ['before_or_equal:' . \date('Y')],
+            'ISBN'             => ['string'],
+            'description'      => ['string', 'max:175'],
+            'performed_by'     => ['string'],
+            'performance_type' => ['string'],
+            'language'         => ['string', 'max:255'],
+            'volume'           => ['integer', 'min:0', 'required_with:part', 'gte:part'],
+            'part'             => ['integer', 'min:0', 'required_with:volume'],
+            'format'           => ['string', 'max:255'],
+            'storage'          => ['string', 'max:255'],
 
-            'recording_length'  => ['date_format:"i:s"'],
+            'recording_length'  => ['numeric'],
             'table_of_contents' => ['string'],
         ];
     }

@@ -91,7 +91,7 @@ class Book extends BaseType
         return $this;
     }
 
-    public function pageExtent(string $value): self
+    public function pageExtent(int $value): self
     {
         $this->addItem('page_extent', $value);
 
@@ -115,8 +115,8 @@ class Book extends BaseType
             'year'        => ['integer', 'max:' . \date('Y')],
             'ISBN'        => ['string'],
             'description' => ['string', 'max:175'],
-            'volume'      => ['integer', 'min:0', 'gte:part'],
-            'part'        => ['integer', 'min:0', 'required_id:volume'],
+            'volume'      => ['integer', 'min:0', 'required_with:part', 'gte:part'],
+            'part'        => ['integer', 'min:0', 'required_with:volume'],
             'language'    => ['string', 'max:255'],
             'binding'     => ['string', 'max:255'],
             'page_extent' => ['integer', 'min:1'],

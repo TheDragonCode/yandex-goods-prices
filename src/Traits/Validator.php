@@ -7,9 +7,17 @@ use Illuminate\Support\Facades\Validator as IlluminateValidator;
 
 trait Validator
 {
-    protected function validate(array $data = [], array $rules = [], array $base_rules = [])
+    protected function validate(array $data = [], array $rules = [], array $base_rules = [], array $required_items = [])
     {
-        $rules = array_merge($base_rules, $rules);
+        $rules = \array_merge($base_rules, $rules);
+
+        foreach ($rules as $key => &$values) {
+            if (\in_array($key, $required_items)) {
+                \array_push($values, 'required');
+
+                $values = \array_unique($values);
+            }
+        }
 
         $validator = IlluminateValidator::make($data, $rules);
 

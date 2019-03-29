@@ -45,9 +45,9 @@ class EventTicket extends BaseType
         return $this;
     }
 
-    public function date(string $value): self
+    public function date(\DateTimeInterface $date): self
     {
-        $this->addItem('date', $value);
+        $this->addItem('date', $date->format('c'));
 
         return $this;
     }
@@ -77,7 +77,7 @@ class EventTicket extends BaseType
             'place'       => ['string', 'max:255'],
             'hall plan'   => ['url'],
             'hall_part'   => ['string', 'max:255'],
-            'date'        => ['date_format:"Y-m-dTH:i"'],
+            'date'        => ['date'],
             'is_premiere' => ['string', 'max:255', Rule::in(Variables::BOOLEAN)],
             'is_kids'     => ['string', 'max:255', Rule::in(Variables::BOOLEAN)],
         ];

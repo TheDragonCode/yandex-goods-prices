@@ -23,7 +23,7 @@ abstract class BaseType implements Item
     {
         $offer = $this->offer();
 
-        $this->validate($this->items, $this->rules(), $this->baseRules());
+        $this->validate($this->items, $this->rules(), $this->baseRules(), $this->required_items);
 
         return $this->make($offer);
     }
