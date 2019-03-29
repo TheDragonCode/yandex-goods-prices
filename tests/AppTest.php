@@ -51,7 +51,7 @@ class AppTest extends TestCase
 
         \app('yandex_goods_prices')->service()
             ->categories($category, $category, $category)
-            ->currencies($currency, $currency, $currency)
+            ->currencies($currency, $currency, [$currency, $currency, $currency])
             ->offers($offer, $offer, $offer)
             ->name('foo')
             ->company('bar')

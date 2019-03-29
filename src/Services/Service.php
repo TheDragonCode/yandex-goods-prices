@@ -173,19 +173,34 @@ class Service
     private function each($instance, $items, &$parent)
     {
         foreach ($items as $item) {
-            if (\is_array($instance)) {
-                $is_instance = \in_array(\get_class($item), $instance);
-            } else {
-                $is_instance = $item instanceof $instance;
-            }
+            $is_instance = $this->checkOfferInstance($instance, $item);
 
             if ($is_instance) {
                 $this->xml->appendChild($parent, $item->get());
             } elseif (\is_array($item)) {
                 foreach ($item as $element) {
-                    $this->xml->appendChild($parent, $element->get());
+                    $is_instance = $this->checkOfferInstance($instance, $item);
+
+                    if ($is_instance) {
+                        $this->xml->appendChild($parent, $element->get());
+                    }
                 }
             }
         }
+    }
+
+    /**
+     * @param array|object $expected
+     * @param object $actual
+     *
+     * @return bool
+     */
+    private function checkOfferInstance($expected, $actual): bool
+    {
+        if (\is_array($expected)) {
+            return \in_array($actual, $expected);
+        }
+
+        return $actual instanceof $expected;
     }
 }
