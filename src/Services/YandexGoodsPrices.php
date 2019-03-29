@@ -4,11 +4,14 @@ namespace Helldar\Yandex\GoodsPrices\Services;
 
 use Helldar\Core\Xml\Facades\Xml;
 use Helldar\Core\Xml\Helpers\Str;
+use Helldar\Yandex\GoodsPrices\Traits\Validator;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 
 class YandexGoodsPrices
 {
+    use Validator;
+
     /** @var \Helldar\Core\Xml\Facades\Xml */
     protected $xml;
 
@@ -45,6 +48,10 @@ class YandexGoodsPrices
     {
         $value = Str::e(\trim($value));
 
+        $this->validate(\compact('value'), [
+            'value' => 'required|string|max:20',
+        ]);
+
         $this->name = $this->xml->makeItem('name', $value);
 
         return $this;
@@ -54,6 +61,10 @@ class YandexGoodsPrices
     {
         $value = Str::e(\trim($value));
 
+        $this->validate(\compact('value'), [
+            'value' => 'required|string|max:255',
+        ]);
+
         $this->company = $this->xml->makeItem('company', $value);
 
         return $this;
@@ -62,6 +73,10 @@ class YandexGoodsPrices
     public function url(string $url): self
     {
         $value = Str::e(\trim($url));
+
+        $this->validate(\compact('value'), [
+            'value' => 'required|url',
+        ]);
 
         $this->url = $this->xml->makeItem('url', $value);
 

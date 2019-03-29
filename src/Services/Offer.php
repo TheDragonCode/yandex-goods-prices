@@ -5,13 +5,16 @@ namespace Helldar\Yandex\GoodsPrices\Services;
 use DOMElement;
 use Helldar\Core\Xml\Helpers\Str;
 use Helldar\Yandex\GoodsPrices\Interfaces\XmlItems;
+use Helldar\Yandex\GoodsPrices\Traits\Validator;
 use Helldar\Yandex\GoodsPrices\Traits\Xml;
 
 class Offer implements XmlItems
 {
-    use Xml;
+    use Xml, Validator;
 
     private $id;
+
+    private $type;
 
     private $available = 'true';
 
@@ -27,9 +30,26 @@ class Offer implements XmlItems
 
     private $name;
 
-    public function id(string $id): self
+    private $description;
+
+    public function id(int $id): self
     {
-        $this->id = \trim((string) $id);
+        $this->validate(\compact('id'), [
+            'id' => ['required', 'min:1'],
+        ]);
+
+        $this->id = $id;
+
+        return $this;
+    }
+
+    public function type(string $value = null): self
+    {
+        $this->validate(\compact('value'), [
+            'value' => ['nullable', 'string'],
+        ]);
+
+        $this->type = \is_null($value) ? null : \trim($value);
 
         return $this;
     }
@@ -41,9 +61,13 @@ class Offer implements XmlItems
         return $this;
     }
 
-    public function url(string $value): self
+    public function url(string $url): self
     {
-        $this->url = Str::e($value);
+        $this->validate(\compact('url'), [
+            'url' => ['required', 'url'],
+        ]);
+
+        $this->url = Str::e($url);
 
         return $this;
     }
@@ -78,7 +102,18 @@ class Offer implements XmlItems
 
     public function name(string $value): self
     {
-        $this->name = Str::e($value);
+        $value = \strip_tags($value);
+
+        $this->name = Str::e(\trim($value));
+
+        return $this;
+    }
+
+    public function description(string $value): self
+    {
+        $value = \strip_tags($value);
+
+        $this->description = Str::e(\trim($value));
 
         return $this;
     }
@@ -87,9 +122,10 @@ class Offer implements XmlItems
     {
         $offer = $this->makeOffer();
 
-        $url   = $this->xmlItem('url', $this->url);
-        $price = $this->xmlItem('price', $this->price);
-        $name  = $this->xmlItem('name', $this->name);
+        $url         = $this->xmlItem('url', $this->url);
+        $price       = $this->xmlItem('price', $this->price);
+        $name        = $this->xmlItem('name', $this->name);
+        $description = $this->xmlItem('description', $this->description);
 
         $currency_id = $this->xmlItem('currencyId', $this->currency_id);
         $category_id = $this->xmlItem('categoryId', $this->category_id);
@@ -100,6 +136,7 @@ class Offer implements XmlItems
         $this->xmlAppendChild($offer, $currency_id);
         $this->xmlAppendChild($offer, $delivery);
         $this->xmlAppendChild($offer, $name);
+        $this->xmlAppendChild($offer, $description);
         $this->xmlAppendChild($offer, $price);
         $this->xmlAppendChild($offer, $url);
 

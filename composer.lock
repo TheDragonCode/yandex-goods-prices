@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7472e0dfe3f5030f222b22cbc21758c9",
+    "content-hash": "3a42d4767e8a348c936b94dc44ae3089",
     "packages": [
         {
             "name": "andrey-helldar/xml-core",
