@@ -4,7 +4,7 @@ namespace Tests\Services;
 
 use DOMDocument;
 use DOMElement;
-use Helldar\Yandex\GoodsPrices\Services\Category;
+use Helldar\Yandex\GoodsPrices\Services\Items\Category;
 use Tests\TestCase;
 
 class CategoryTest extends TestCase

@@ -2,42 +2,48 @@
 
 namespace Helldar\Yandex\GoodsPrices\Traits\Items;
 
-use Helldar\Yandex\GoodsPrices\Helpers\Variables;
-use Illuminate\Validation\Rule;
-
 trait BaseMethods
 {
+    public function id(int $id): self
+    {
+        $this->addItem('id', $id);
+
+        return $this;
+    }
+
+    public function available(bool $is_available): self
+    {
+        $value = $is_available ? 'true' : 'false';
+
+        $this->addItem('available', $value);
+
+        return $this;
+    }
+
     public function url(string $url): self
     {
-        $rules = ['required', 'url', 'max:512'];
-        $this->addItem('url', $url, $rules);
+        $this->addItem('url', $url);
 
         return $this;
     }
 
     public function price(int $value): self
     {
-        $rules = ['required', 'integer', 'min:1'];
-
-        $this->addItem('price', $value, $rules);
+        $this->addItem('price', $value);
 
         return $this;
     }
 
     public function currencyId(string $value): self
     {
-        $rules = ['required', 'string', Rule::in(Variables::CURRENCIES)];
-
-        $this->addItem('currencyId', $value, $rules);
+        $this->addItem('currencyId', $value);
 
         return $this;
     }
 
     public function categoryId(int $value): self
     {
-        $rules = ['required', 'integer', 'max:999999999999999999'];
-
-        $this->addItem('categoryId', $value, $rules);
+        $this->addItem('categoryId', $value);
 
         return $this;
     }
@@ -45,9 +51,8 @@ trait BaseMethods
     public function delivery(bool $value): self
     {
         $value = $value ? 'true' : 'false';
-        $rules = ['string', Rule::in(Variables::BOOLEAN)];
 
-        $this->addItem('delivery', $value, $rules);
+        $this->addItem('delivery', $value);
 
         return $this;
     }

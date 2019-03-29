@@ -5,12 +5,13 @@ namespace Helldar\Yandex\GoodsPrices\Services\Items\Types;
 use DOMElement;
 use Helldar\Yandex\GoodsPrices\Interfaces\Item;
 use Helldar\Yandex\GoodsPrices\Traits\Items\BaseMethods;
+use Helldar\Yandex\GoodsPrices\Traits\Items\BaseRules;
 use Helldar\Yandex\GoodsPrices\Traits\Validator;
 use Helldar\Yandex\GoodsPrices\Traits\Xml;
 
 abstract class BaseType implements Item
 {
-    use Xml, Validator, BaseMethods;
+    use Xml, Validator, BaseMethods, BaseRules;
 
     protected $type = 'vendor.model';
 
@@ -18,16 +19,11 @@ abstract class BaseType implements Item
 
     private $items = [];
 
-    public function __construct()
-    {
-        $this->requiredItems('url', 'price', 'currencyId', 'categoryId');
-    }
-
     public function get(): DOMElement
     {
         $offer = $this->offer();
 
-        $this->validate($this->items, $this->rules());
+        $this->validate($this->items, $this->rules(), $this->baseRules());
 
         return $this->make($offer);
     }
@@ -49,7 +45,7 @@ abstract class BaseType implements Item
         return [];
     }
 
-    private function item($key): array
+    private function item($key)
     {
         return $this->items[$key] ?? null;
     }
@@ -60,7 +56,7 @@ abstract class BaseType implements Item
         $available = $this->item('available');
         $type      = $this->type;
 
-        return $this->xmlItem('offer', null, \compact('id', 'available', 'type'));
+        return $this->xmlItem('offer', null, \compact('id', 'type', 'available'));
     }
 
     private function make(DOMElement $offer): DOMElement

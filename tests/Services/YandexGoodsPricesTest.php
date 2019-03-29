@@ -5,30 +5,30 @@ namespace Tests\Services;
 use Helldar\Yandex\GoodsPrices\Services\Category;
 use Helldar\Yandex\GoodsPrices\Services\Currency;
 use Helldar\Yandex\GoodsPrices\Services\Offer;
-use Helldar\Yandex\GoodsPrices\Services\YandexGoodsPrices;
+use Helldar\Yandex\GoodsPrices\Services\Service;
 use Tests\TestCase;
 
 class YandexGoodsPricesTest extends TestCase
 {
     public function testName()
     {
-        $item = (new YandexGoodsPrices)->name('foo');
+        $item = (new Service)->name('foo');
 
-        $this->assertTrue($item instanceof YandexGoodsPrices);
+        $this->assertTrue($item instanceof Service);
     }
 
     public function testCompany()
     {
-        $item = (new YandexGoodsPrices)->company('bar');
+        $item = (new Service)->company('bar');
 
-        $this->assertTrue($item instanceof YandexGoodsPrices);
+        $this->assertTrue($item instanceof Service);
     }
 
     public function testUrl()
     {
-        $item = (new YandexGoodsPrices)->url('http://example.com');
+        $item = (new Service)->url('http://example.com');
 
-        $this->assertTrue($item instanceof YandexGoodsPrices);
+        $this->assertTrue($item instanceof Service);
     }
 
     public function testOffers()
@@ -43,27 +43,27 @@ class YandexGoodsPricesTest extends TestCase
             ->categoryId(2)
             ->delivery(true);
 
-        $item = (new YandexGoodsPrices)->offers($offer, $offer, $offer);
+        $item = (new Service)->offers($offer, $offer, $offer);
 
-        $this->assertTrue($item instanceof YandexGoodsPrices);
+        $this->assertTrue($item instanceof Service);
     }
 
     public function testCurrencies()
     {
         $currency = (new Currency)->id('RUR')->rate(2);
 
-        $item = (new YandexGoodsPrices)->currencies($currency, $currency, $currency);
+        $item = (new Service)->currencies($currency, $currency, $currency);
 
-        $this->assertTrue($item instanceof YandexGoodsPrices);
+        $this->assertTrue($item instanceof Service);
     }
 
     public function testCategories()
     {
         $category = (new Category)->id(1)->name('foo');
 
-        $item = (new YandexGoodsPrices)->categories($category, $category, $category);
+        $item = (new Service)->categories($category, $category, $category);
 
-        $this->assertTrue($item instanceof YandexGoodsPrices);
+        $this->assertTrue($item instanceof Service);
     }
 
     public function testSave()
@@ -84,7 +84,7 @@ class YandexGoodsPricesTest extends TestCase
             ->categoryId(2)
             ->delivery(true);
 
-        (new YandexGoodsPrices)
+        (new Service)
             ->categories($category, $category, $category)
             ->currencies($currency, $currency, $currency)
             ->offers($offer, $offer, $offer)
@@ -114,7 +114,7 @@ class YandexGoodsPricesTest extends TestCase
             ->categoryId(1)
             ->delivery(true);
 
-        (new YandexGoodsPrices)
+        (new Service)
             ->categories($category)
             ->currencies($currency)
             ->offers($offer)

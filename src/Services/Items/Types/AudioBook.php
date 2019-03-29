@@ -11,8 +11,6 @@ class AudioBook extends BaseType
 
     public function __construct()
     {
-        parent::__construct();
-
         $this->requiredItems('delivery', 'name');
     }
 

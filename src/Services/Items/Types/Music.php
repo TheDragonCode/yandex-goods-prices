@@ -11,8 +11,6 @@ class Music extends BaseType
 
     public function __construct()
     {
-        parent::__construct();
-
         $this->requiredItems('delivery', 'title');
     }
 

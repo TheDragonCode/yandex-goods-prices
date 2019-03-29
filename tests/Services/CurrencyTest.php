@@ -4,7 +4,7 @@ namespace Tests\Services;
 
 use DOMDocument;
 use DOMElement;
-use Helldar\Yandex\GoodsPrices\Services\Currency;
+use Helldar\Yandex\GoodsPrices\Services\Items\Currency;
 use Tests\TestCase;
 
 class CurrencyTest extends TestCase

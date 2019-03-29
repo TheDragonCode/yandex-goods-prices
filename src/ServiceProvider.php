@@ -2,20 +2,12 @@
 
 namespace Helldar\Yandex\GoodsPrices;
 
+use Helldar\Yandex\GoodsPrices\Facades\YandexGoodsPrices;
+
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
     protected $defer = false;
 
-    /**
-     * Bootstrap the application events.
-     *
-     * @return void
-     */
     public function boot()
     {
         $this->publishes([
@@ -23,11 +15,15 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         ]);
     }
 
-    /**
-     * Register the service provider.
-     */
     public function register()
     {
         $this->mergeConfigFrom(__DIR__ . '/config/yandex_goods_prices.php', 'yandex_goods_prices');
+
+        $this->app->singleton('yandex_goods_prices', YandexGoodsPrices::class);
+    }
+
+    public function provides()
+    {
+        return ['yandex_goods_prices'];
     }
 }

@@ -8,7 +8,7 @@ use Helldar\Yandex\GoodsPrices\Traits\Validator;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 
-class YandexGoodsPrices
+class Service
 {
     use Validator;
 
@@ -86,7 +86,7 @@ class YandexGoodsPrices
     /**
      * @param array|\Helldar\Yandex\GoodsPrices\Services\Currency ...$items
      *
-     * @return \Helldar\Yandex\GoodsPrices\Services\YandexGoodsPrices
+     * @return \Helldar\Yandex\GoodsPrices\Services\Service
      */
     public function currencies(...$items): self
     {
@@ -98,7 +98,7 @@ class YandexGoodsPrices
     /**
      * @param array|\Helldar\Yandex\GoodsPrices\Services\Category ...$items
      *
-     * @return \Helldar\Yandex\GoodsPrices\Services\YandexGoodsPrices
+     * @return \Helldar\Yandex\GoodsPrices\Services\Service
      */
     public function categories(...$items): self
     {
@@ -110,7 +110,7 @@ class YandexGoodsPrices
     /**
      * @param array|\Helldar\Yandex\GoodsPrices\Services\Offer ...$items
      *
-     * @return \Helldar\Yandex\GoodsPrices\Services\YandexGoodsPrices
+     * @return \Helldar\Yandex\GoodsPrices\Services\Service
      */
     public function offers(...$items): self
     {
