@@ -52,83 +52,74 @@ php artisan vendor:publish --provider="Helldar\Yandex\GoodsPrices\ServiceProvide
 ## Using
 
 ```php
-use Helldar\Yandex\GoodsPrices\Services\Category;
-use Helldar\Yandex\GoodsPrices\Services\Currency;
-use Helldar\Yandex\GoodsPrices\Services\Offer;
-use Helldar\Yandex\GoodsPrices\Services\YandexGoodsPrices;
+$currency = \app('yandex_goods_prices')->currency()->id('RUB')->rate(2);
+$category = \app('yandex_goods_prices')->category()->id(1)->name('foo');
 
-$currency_rur = (new Currency)->id('RUR')->rate(1);
-$currency_eur = (new Currency)->id('USD')->rate(2);
-
-$category_1 = (new Category)->id(1)->name('foo');
-$category_2 = (new Category)->id(2)->name('bar');
-
-$offer_1 = (new Offer)
-    ->id(1)
-    ->name('foo')
-    ->available(true)
-    ->url('http://example.com/item/1')
-    ->price(15.3)
-    ->currencyId(1)
+$offer = \app('yandex_goods_prices')->offer()->other()
+    ->id(1234)
+    ->available()
     ->categoryId(2)
-    ->delivery(true);
+    ->countryOfOrigin('Россия')
+    ->currencyId('USD')
+    ->delivery(true)
+    ->deliveryOptions(200)
+    ->description('foo')
+    ->downloadable(true)
+    ->manufacturerWarranty('foo')
+    ->model('bar')
+    ->price(200)
+    ->salesNotes('foo')
+    ->typePrefix('foo')
+    ->url('http://example.com')
+    ->vendor('FOO')
+    ->vendorCode('foo');
 
-$offer_2 = (new Offer)
-    ->id(2)
-    ->name('bar')
-    ->available(true)
-    ->url('http://example.com/item/2')
-    ->price(700)
-    ->currencyId(2)
-    ->categoryId(1)
-    ->delivery(false);
-
-(new YandexGoodsPrices)
-    ->categories($category_1, $category_2)
-    ->currencies($currency_rur, $currency_eur)
-    ->offers($offer_1, $offer_2)
-    ->name('shop name')
-    ->company('company name')
+\app('yandex_goods_prices')->service()
+    ->categories($category, $category)
+    ->currencies($currency)
+    ->offers($offer)
+    ->name('foo')
+    ->company('bar')
     ->url('http://example.com')
     ->save();
 ```
 
 Saved as:
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE yml_catalog SYSTEM "shops.dtd">
-<yml_catalog date="2019-03-28 13:50">
-  <shop>
-    <company>company name</company>
-    <name>shop name</name>
-    <url>http://example.com</url>
-    <categories>
-      <category id="1">foo</category>
-      <category id="2">bar</category>
-    </categories>
-    <currencies>
-      <currency id="RUR" rate="1"/>
-      <currency id="USD" rate="2"/>
-    </currencies>
-    <offers>
-      <offer id="1" available="1">
-        <categoryId>2</categoryId>
-        <currencyId>1</currencyId>
-        <delivery>true</delivery>
+<yml_catalog date="2018-10-19 12:00">
+    <shop>
+        <company>bar</company>
         <name>foo</name>
-        <price>15.3</price>
-        <url>http://example.com/item/1</url>
-      </offer>
-      <offer id="2" available="1">
-        <categoryId>1</categoryId>
-        <currencyId>2</currencyId>
-        <delivery>false</delivery>
-        <name>bar</name>
-        <price>700</price>
-        <url>http://example.com/item/2</url>
-      </offer>
-    </offers>
-  </shop>
+        <url>http://example.com</url>
+        <categories>
+            <category id="1">foo</category>
+            <category id="1">foo</category>
+        </categories>
+        <currencies>
+            <currency id="RUB" rate="2"/>
+        </currencies>
+        <offers>
+            <offer id="1234" type="audiobook" available="true">
+                <categoryId>2</categoryId>
+                <country_of_origin>Россия</country_of_origin>
+                <currencyId>2</currencyId>
+                <delivery>true</delivery>
+                <delivery-options>200</delivery-options>
+                <description>foo</description>
+                <downloadable>true</downloadable>
+                <manufacturer_warranty>foo</manufacturer_warranty>
+                <model>bar</model>
+                <price>200</price>
+                <sales_notes>foo</sales_notes>
+                <typePrefix>foo</typePrefix>
+                <url>http://example.com</url>
+                <vendor>FOO</vendor>
+                <vendorCode>foo</vendorCode>
+            </offer>
+        </offers>
+    </shop>
 </yml_catalog>
 ```
 
@@ -137,12 +128,12 @@ You can also use an array for a `categories()`, `currencies()` and `offers` meth
 $currencies = [];
 
 for ($i = 0; $i < 10; $i++) {
-    $currency = (new Currency)->id('USD')->rate($i);
+    $currency = \app('yandex_goods_prices')->currency()->id('USD')->rate($i);
     
     array_push($currencies, $currency);
 }
 
-(new YandexGoodsPrices)
+\app('yandex_goods_prices')->service()
     ->categories($category_1, $category_2, $categories)
     ->currencies($currency_rur, $currencies)
     ->offers($offers, $offer_1, $offer_2)
