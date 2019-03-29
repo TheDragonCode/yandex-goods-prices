@@ -2,6 +2,9 @@
 
 namespace Helldar\Yandex\GoodsPrices\Services\Items\Types;
 
+/**
+ * @see https://yandex.ru/support/webmaster/goods-prices/technical-requirements.html#tag_11__artist-title
+ */
 class Music extends BaseType
 {
     protected $type = 'artist.title';

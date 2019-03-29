@@ -5,6 +5,9 @@ namespace Helldar\Yandex\GoodsPrices\Services\Items\Types;
 use Helldar\Yandex\GoodsPrices\Helpers\Variables;
 use Illuminate\Validation\Rule;
 
+/**
+ * @see https://yandex.ru/support/webmaster/goods-prices/technical-requirements.html#tag_11__tour
+ */
 class Tour extends BaseType
 {
     protected $type = 'artist.title';
