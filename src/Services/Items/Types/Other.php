@@ -96,9 +96,11 @@ class Other extends BaseType
         return $this;
     }
 
-    public function adult(string $value): self
+    public function adult(string $is_adult): self
     {
-        $this->addItem('adult', $value);
+        $is_adult = $is_adult ? 'true' : 'false';
+
+        $this->addItem('adult', $is_adult);
 
         return $this;
     }
@@ -120,7 +122,7 @@ class Other extends BaseType
 
             'available'    => ['string', Rule::in(Variables::BOOLEAN)],
             'downloadable' => ['string', 'max:255'],
-            'adult'        => ['string', 'max:255'],
+            'adult'        => ['string', 'max:255', Rule::in(Variables::BOOLEAN)],
         ];
     }
 }

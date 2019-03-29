@@ -65,9 +65,11 @@ class Video extends BaseType
         return $this;
     }
 
-    public function adult(string $value): self
+    public function adult(bool $is_adult): self
     {
-        $this->addItem('adult', $value);
+        $is_adult = $is_adult ? 'true' : 'false';
+
+        $this->addItem('adult', $is_adult);
 
         return $this;
     }
@@ -82,7 +84,7 @@ class Video extends BaseType
             'country'      => ['string', 'max:255', Rule::in(Variables::COUNTRIES)],
             'year'         => ['integer', 'max:' . \date('Y')],
             'media'        => ['string', 'max:255'],
-            'adult'        => ['string', 'max:255'],
+            'adult'        => ['string', 'max:255', Rule::in(Variables::BOOLEAN)],
         ];
     }
 }
