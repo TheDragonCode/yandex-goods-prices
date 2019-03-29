@@ -4,6 +4,15 @@ namespace Helldar\Yandex\GoodsPrices\Services;
 
 use Helldar\Core\Xml\Facades\Xml;
 use Helldar\Core\Xml\Helpers\Str;
+use Helldar\Yandex\GoodsPrices\Services\Items\Category;
+use Helldar\Yandex\GoodsPrices\Services\Items\Currency;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\AudioBook;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Book;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\EventTicket;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Music;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Other;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Tour;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Video;
 use Helldar\Yandex\GoodsPrices\Traits\Validator;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
@@ -84,7 +93,7 @@ class Service
     }
 
     /**
-     * @param array|\Helldar\Yandex\GoodsPrices\Services\Currency ...$items
+     * @param array|\Helldar\Yandex\GoodsPrices\Services\Items\Currency ...$items
      *
      * @return \Helldar\Yandex\GoodsPrices\Services\Service
      */
@@ -96,7 +105,7 @@ class Service
     }
 
     /**
-     * @param array|\Helldar\Yandex\GoodsPrices\Services\Category ...$items
+     * @param array|\Helldar\Yandex\GoodsPrices\Services\Items\Category ...$items
      *
      * @return \Helldar\Yandex\GoodsPrices\Services\Service
      */
@@ -108,13 +117,23 @@ class Service
     }
 
     /**
-     * @param array|\Helldar\Yandex\GoodsPrices\Services\Offer ...$items
+     * @param array|\Helldar\Yandex\GoodsPrices\Services\Items\Offer ...$items
      *
      * @return \Helldar\Yandex\GoodsPrices\Services\Service
      */
     public function offers(...$items): self
     {
-        $this->each(Offer::class, $items, $this->offers);
+        $instances = [
+            AudioBook::class,
+            Book::class,
+            EventTicket::class,
+            Music::class,
+            Other::class,
+            Tour::class,
+            Video::class,
+        ];
+
+        $this->each($instances, $items, $this->offers);
 
         return $this;
     }
@@ -154,7 +173,13 @@ class Service
     private function each($instance, $items, &$parent)
     {
         foreach ($items as $item) {
-            if ($item instanceof $instance) {
+            if (\is_array($instance)) {
+                $is_instance = \in_array(\get_class($item), $instance);
+            } else {
+                $is_instance = $item instanceof $instance;
+            }
+
+            if ($is_instance) {
                 $this->xml->appendChild($parent, $item->get());
             } elseif (\is_array($item)) {
                 foreach ($item as $element) {
