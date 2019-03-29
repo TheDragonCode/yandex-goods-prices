@@ -4,7 +4,7 @@ namespace Helldar\Yandex\GoodsPrices\Interfaces;
 
 use DOMElement;
 
-interface XmlItems
+interface Item
 {
     public function get(): DOMElement;
 }

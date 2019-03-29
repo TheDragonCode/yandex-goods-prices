@@ -1,11 +1,11 @@
 <?php
 
-namespace Helldar\Yandex\GoodsPrices\Services;
+namespace Helldar\Yandex\GoodsPrices\Services\Items;
 
 use DOMElement;
 use Helldar\Core\Xml\Helpers\Str;
-use Helldar\Yandex\GoodsPrices\Helpers\CurrencyHelper;
-use Helldar\Yandex\GoodsPrices\Interfaces\XmlItems;
+use Helldar\Yandex\GoodsPrices\Helpers\Variables;
+use Helldar\Yandex\GoodsPrices\Interfaces\Item;
 use Helldar\Yandex\GoodsPrices\Traits\Validator;
 use Helldar\Yandex\GoodsPrices\Traits\Xml;
 use Illuminate\Validation\Rule;
@@ -13,7 +13,7 @@ use Illuminate\Validation\Rule;
 /**
  * @see https://yandex.ru/support/webmaster/goods-prices/technical-requirements.html#concept3__currencies
  */
-class Currency implements XmlItems
+class Currency implements Item
 {
     use Xml, Validator;
 
@@ -26,7 +26,7 @@ class Currency implements XmlItems
         $id = Str::upper(\trim($id));
 
         $this->validate(\compact('id'), [
-            'id' => ['string', Rule::in(CurrencyHelper::AVAILABLE_CURRENCIES)],
+            'id' => ['string', Rule::in(Variables::CURRENCIES)],
         ]);
 
         $this->id = $id;
@@ -45,7 +45,7 @@ class Currency implements XmlItems
             $rate = Str::upper($rate);
 
             $this->validate(\compact('rate'), [
-                'rate' => ['string', Rule::in(CurrencyHelper::AVAILABLE_RATE)],
+                'rate' => ['string', Rule::in(Variables::RATES)],
             ]);
         }
 

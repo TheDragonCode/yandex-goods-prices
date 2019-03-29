@@ -1,17 +1,17 @@
 <?php
 
-namespace Helldar\Yandex\GoodsPrices\Services;
+namespace Helldar\Yandex\GoodsPrices\Services\Items;
 
 use DOMElement;
 use Helldar\Core\Xml\Helpers\Str;
-use Helldar\Yandex\GoodsPrices\Interfaces\XmlItems;
+use Helldar\Yandex\GoodsPrices\Interfaces\Item;
 use Helldar\Yandex\GoodsPrices\Traits\Validator;
 use Helldar\Yandex\GoodsPrices\Traits\Xml;
 
 /**
  * @see https://yandex.ru/support/webmaster/goods-prices/technical-requirements.html#concept3__categories
  */
-class Category implements XmlItems
+class Category implements Item
 {
     use Xml, Validator;
 
