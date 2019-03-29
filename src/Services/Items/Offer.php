@@ -4,6 +4,7 @@ namespace Helldar\Yandex\GoodsPrices\Services\Items;
 
 use Helldar\Yandex\GoodsPrices\Services\Items\Types\AudioBook;
 use Helldar\Yandex\GoodsPrices\Services\Items\Types\Book;
+use Helldar\Yandex\GoodsPrices\Services\Items\Types\EventTicket;
 use Helldar\Yandex\GoodsPrices\Services\Items\Types\Music;
 use Helldar\Yandex\GoodsPrices\Services\Items\Types\Other;
 use Helldar\Yandex\GoodsPrices\Services\Items\Types\Tour;
@@ -39,5 +40,10 @@ class Offer
     public function tour(): Tour
     {
         return new Tour;
+    }
+
+    public function eventTicket(): EventTicket
+    {
+        return new EventTicket;
     }
 }
