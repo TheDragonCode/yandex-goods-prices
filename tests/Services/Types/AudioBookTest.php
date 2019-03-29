@@ -13,52 +13,54 @@ class AudioBookTest extends TestCase
     {
         $actual = (new AudioBook)
             ->id(1234)
-            ->available(true)
-            ->url('http://example.com')
-            ->price(200)
-            ->currencyId('USD')
-            ->categoryId(2)
-            ->name('foo')
             ->author('bar')
-            ->publisher('foo')
-            ->series('foo')
-            ->year(2019)
-            ->isbn('978-5-94878-004-7')
+            ->available()
+            ->categoryId(2)
+            ->currencyId('USD')
+            ->delivery(false)
             ->description('foo')
-            ->performedBy('foo')
-            ->performanceType('foo')
-            ->language('foo')
-            ->volume(4)
-            ->part(3)
             ->format('DVD')
-            ->storage('PDF')
+            ->isbn('978-5-94878-004-7')
+            ->language('foo')
+            ->name('foo')
+            ->part(3)
+            ->performanceType('foo')
+            ->performedBy('foo')
+            ->price(200)
+            ->publisher('foo')
             ->recordingLength('200.30')
+            ->series('foo')
+            ->storage('PDF')
             ->tableOfContents('foo')
+            ->url('http://example.com')
+            ->volume(4)
+            ->year(2019)
             ->get();
 
         $source = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
 <offer id="1234" type="audiobook" available="true">
-    <url>http://example.com</url>
-    <price>200</price>
-    <currencyId>USD</currencyId>
-    <categoryId>2</categoryId>
-    <name>foo</name>
-    <author>bar</author>
-    <publisher>foo</publisher>
-    <series>foo</series>
-    <year>2019</year>
     <ISBN>978-5-94878-004-7</ISBN>
+    <author>bar</author>
+    <categoryId>2</categoryId>
+    <currencyId>USD</currencyId>
+    <delivery>false</delivery>
     <description>foo</description>
-    <performed_by>foo</performed_by>
-    <performance_type>foo</performance_type>
-    <language>foo</language>
-    <volume>4</volume>
-    <part>3</part>
     <format>DVD</format>
-    <storage>PDF</storage>
+    <language>foo</language>
+    <name>foo</name>
+    <part>3</part>
+    <performance_type>foo</performance_type>
+    <performed_by>foo</performed_by>
+    <price>200</price>
+    <publisher>foo</publisher>
     <recording_length>200.30</recording_length>
+    <series>foo</series>
+    <storage>PDF</storage>
     <table_of_contents>foo</table_of_contents>
+    <url>http://example.com</url>
+    <volume>4</volume>
+    <year>2019</year>
 </offer>
 XML;
 

@@ -4,61 +4,47 @@ namespace Tests\Services\Types;
 
 use DOMDocument;
 use Exception;
-use Helldar\Yandex\GoodsPrices\Services\Items\Types\AudioBook;
+use Helldar\Yandex\GoodsPrices\Services\Items\Types\Video;
 use Tests\TestCase;
 
 class VideoTest extends TestCase
 {
     public function testSuccess()
     {
-        $actual = (new AudioBook)
+        $actual = (new Video)
             ->id(1234)
-            ->available(true)
-            ->url('http://example.com')
-            ->price(200)
-            ->currencyId('USD')
+            ->adult(true)
+            ->available()
             ->categoryId(2)
-            ->name('foo')
-            ->author('bar')
-            ->publisher('foo')
-            ->series('foo')
+            ->country('Россия')
+            ->currencyId('RUB')
+            ->delivery(false)
+            ->director('foo')
+            ->media('file')
+            ->originalName('foo')
+            ->price(200)
+            ->starring(['foo', 'bar', 'baz'])
+            ->title('foo')
+            ->url('http://example.com')
             ->year(2019)
-            ->isbn('978-5-94878-004-7')
-            ->description('foo')
-            ->performedBy('foo')
-            ->performanceType('foo')
-            ->language('foo')
-            ->volume(4)
-            ->part(3)
-            ->format('DVD')
-            ->storage('PDF')
-            ->recordingLength('200.30')
-            ->tableOfContents('foo')
             ->get();
 
         $source = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
-<offer id="1234" type="audiobook" available="true">
-    <url>http://example.com</url>
-    <price>200</price>
-    <currencyId>USD</currencyId>
+<offer id="1234" type="artist.title" available="true">
+    <adult>true</adult>
     <categoryId>2</categoryId>
-    <name>foo</name>
-    <author>bar</author>
-    <publisher>foo</publisher>
-    <series>foo</series>
+    <country>Россия</country>
+    <currencyId>RUB</currencyId>
+    <delivery>false</delivery>
+    <director>foo</director>
+    <media>file</media>
+    <originalName>foo</originalName>
+    <price>200</price>
+    <starring>foo, bar, baz</starring>
+    <title>foo</title>
+    <url>http://example.com</url>
     <year>2019</year>
-    <ISBN>978-5-94878-004-7</ISBN>
-    <description>foo</description>
-    <performed_by>foo</performed_by>
-    <performance_type>foo</performance_type>
-    <language>foo</language>
-    <volume>4</volume>
-    <part>3</part>
-    <format>DVD</format>
-    <storage>PDF</storage>
-    <recording_length>200.30</recording_length>
-    <table_of_contents>foo</table_of_contents>
 </offer>
 XML;
 
@@ -71,17 +57,55 @@ XML;
     public function testFailed()
     {
         try {
-            (new AudioBook)
+            (new Video)
                 ->url('http://example.com')
                 ->price(200)
                 ->currencyId('USD')
                 ->categoryId(2)
-                ->name('foo')
-                ->author('bar')
-                ->year(2019)
                 ->get();
         } catch (Exception $exception) {
             $this->assertEquals('The id field is required.', $exception->getMessage());
+            $this->assertEquals(400, $exception->getCode());
+        }
+    }
+
+    public function testFailedTitle()
+    {
+        try {
+            (new Video)
+                ->id(1)
+                ->available()
+                ->delivery(false)
+                ->url('http://example.com')
+                ->price(200)
+                ->currencyId('USD')
+                ->categoryId(2)
+                ->get();
+
+            $this->assertTrue(false);
+        } catch (Exception $exception) {
+            $this->assertEquals('The title field is required.', $exception->getMessage());
+            $this->assertEquals(400, $exception->getCode());
+        }
+    }
+
+    public function testFailedCurrencyId()
+    {
+        try {
+            (new Video)
+                ->id(1)
+                ->available()
+                ->categoryId(2)
+                ->currencyId('QWE')
+                ->delivery(false)
+                ->price(200)
+                ->title('foo')
+                ->url('http://example.com')
+                ->get();
+
+            $this->assertTrue(false);
+        } catch (Exception $exception) {
+            $this->assertEquals('The selected currency id is invalid.', $exception->getMessage());
             $this->assertEquals(400, $exception->getCode());
         }
     }

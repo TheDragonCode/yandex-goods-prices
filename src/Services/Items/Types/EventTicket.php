@@ -33,14 +33,7 @@ class EventTicket extends BaseType
 
     public function hallPlan(string $value): self
     {
-        $this->addItem('hall plan', $value);
-
-        return $this;
-    }
-
-    public function hallPart(string $value): self
-    {
-        $this->addItem('hall_part', $value);
+        $this->addItem('hall_plan', $value);
 
         return $this;
     }
@@ -76,7 +69,6 @@ class EventTicket extends BaseType
             'name'        => ['string', 'max:255'],
             'place'       => ['string', 'max:255'],
             'hall plan'   => ['url'],
-            'hall_part'   => ['string', 'max:255'],
             'date'        => ['date'],
             'is_premiere' => ['string', 'max:255', Rule::in(Variables::BOOLEAN)],
             'is_kids'     => ['string', 'max:255', Rule::in(Variables::BOOLEAN)],

@@ -11,7 +11,7 @@ trait BaseMethods
         return $this;
     }
 
-    public function available(bool $is_available): self
+    public function available(bool $is_available = true): self
     {
         $value = $is_available ? 'true' : 'false';
 

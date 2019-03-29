@@ -45,9 +45,9 @@ class Tour extends BaseType
         return $this;
     }
 
-    public function dataTour(string $value): self
+    public function dataTour(\DateTimeInterface $date): self
     {
-        $this->addItem('dataTour', $value);
+        $this->addItem('dataTour', $date->format('Y-m-d'));
 
         return $this;
     }
@@ -59,7 +59,7 @@ class Tour extends BaseType
         return $this;
     }
 
-    public function hotelStars(string $value): self
+    public function hotelStars(int $value): self
     {
         $this->addItem('hotel_stars', $value);
 
@@ -108,9 +108,9 @@ class Tour extends BaseType
             'country'     => ['string', 'max:255', Rule::in(Variables::COUNTRIES)],
             'region'      => ['string', 'max:255'],
             'days'        => ['integer', 'min:1'],
-            'dataTour'    => ['date_format:"d/m/Y"'],
+            'dataTour'    => ['date'],
             'name'        => ['string', 'max:255'],
-            'hotel_stars' => ['string', 'max:255'],
+            'hotel_stars' => ['integer', 'min:1', 'max:5'],
             'room'        => ['string', 'max:255'],
             'meal'        => ['string', 'max:255'],
             'included'    => ['string', 'max:255'],

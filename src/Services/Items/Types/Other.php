@@ -15,6 +15,13 @@ class Other extends BaseType
         $this->requiredItems('delivery', 'vendor', 'model');
     }
 
+    public function typePrefix(string $value): self
+    {
+        $this->addItem('typePrefix', $value);
+
+        return $this;
+    }
+
     public function vendor(string $value): self
     {
         $this->addItem('vendor', $value);
@@ -25,13 +32,6 @@ class Other extends BaseType
     public function model(string $value): self
     {
         $this->addItem('model', $value);
-
-        return $this;
-    }
-
-    public function typePrefix(string $value): self
-    {
-        $this->addItem('typePrefix', $value);
 
         return $this;
     }
@@ -57,15 +57,6 @@ class Other extends BaseType
         return $this;
     }
 
-    public function available(bool $value): self
-    {
-        $value = $value ? 'true' : 'false';
-
-        $this->addItem('available', $value);
-
-        return $this;
-    }
-
     public function salesNotes(string $value): self
     {
         $this->addItem('sales_notes', $value);
@@ -87,18 +78,18 @@ class Other extends BaseType
         return $this;
     }
 
-    public function downloadable(string $value): self
+    public function downloadable(bool $value): self
     {
+        $value = $value ? 'true' : 'false';
+
         $this->addItem('downloadable', $value);
 
         return $this;
     }
 
-    public function adult(string $is_adult): self
+    public function adult(string $value): self
     {
-        $is_adult = $is_adult ? 'true' : 'false';
-
-        $this->addItem('adult', $is_adult);
+        $this->addItem('adult', $value);
 
         return $this;
     }
@@ -106,20 +97,19 @@ class Other extends BaseType
     protected function rules(): array
     {
         return [
-            'vendor'      => ['string', 'max:255'],
-            'model'       => ['string', 'max:255'],
-            'typePrefix'  => ['string', 'max:512'],
             'description' => ['string', 'max:175'],
-            'vendorCode'  => ['string', 'max:255'],
+            'model'       => ['string', 'max:255'],
             'sales_notes' => ['string', 'max:50'],
+            'typePrefix'  => ['string', 'max:512'],
+            'vendor'      => ['string', 'max:255'],
+            'vendorCode'  => ['string', 'max:255'],
 
             'delivery-options' => ['integer', 'min:0'],
 
             'manufacturer_warranty' => ['string', 'max:255'],
             'country_of_origin'     => ['string', Rule::in(Variables::COUNTRIES)],
 
-            'available'    => ['string', Rule::in(Variables::BOOLEAN)],
-            'downloadable' => ['string', 'max:255'],
+            'downloadable' => ['string', 'max:255', Rule::in(Variables::BOOLEAN)],
             'adult'        => ['string', 'max:255', Rule::in(Variables::BOOLEAN)],
         ];
     }

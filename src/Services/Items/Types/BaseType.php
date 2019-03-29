@@ -61,6 +61,8 @@ abstract class BaseType implements Item
 
     private function make(DOMElement $offer): DOMElement
     {
+        \ksort($this->items);
+
         foreach ($this->items as $key => $value) {
             if (\in_array($key, ['id', 'type', 'available'])) {
                 continue;

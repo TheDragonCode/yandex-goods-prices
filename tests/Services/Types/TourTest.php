@@ -2,63 +2,58 @@
 
 namespace Tests\Services\Types;
 
+use Carbon\Carbon;
 use DOMDocument;
 use Exception;
-use Helldar\Yandex\GoodsPrices\Services\Items\Types\AudioBook;
+use Helldar\Yandex\GoodsPrices\Services\Items\Types\Tour;
 use Tests\TestCase;
 
 class TourTest extends TestCase
 {
     public function testSuccess()
     {
-        $actual = (new AudioBook)
+        $actual = (new Tour)
             ->id(1234)
-            ->available(true)
-            ->url('http://example.com')
-            ->price(200)
-            ->currencyId('USD')
+            ->available()
             ->categoryId(2)
-            ->name('foo')
-            ->author('bar')
-            ->publisher('foo')
-            ->series('foo')
-            ->year(2019)
-            ->isbn('978-5-94878-004-7')
+            ->country('Россия')
+            ->currencyId('RUB')
+            ->dataTour(Carbon::parse('2019-03-29T00:00+00:00'))
+            ->days(3)
+            ->delivery(true)
             ->description('foo')
-            ->performedBy('foo')
-            ->performanceType('foo')
-            ->language('foo')
-            ->volume(4)
-            ->part(3)
-            ->format('DVD')
-            ->storage('PDF')
-            ->recordingLength('200.30')
-            ->tableOfContents('foo')
+            ->hotelStars(3)
+            ->included('foo')
+            ->meal('HB')
+            ->name('foo')
+            ->price(200)
+            ->region('baz')
+            ->room('SNG')
+            ->transport('bar')
+            ->url('http://example.com')
+            ->worldRegion('foo')
             ->get();
 
         $source = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
-<offer id="1234" type="audiobook" available="true">
-    <url>http://example.com</url>
-    <price>200</price>
-    <currencyId>USD</currencyId>
+<offer id="1234" type="tour" available="true">
     <categoryId>2</categoryId>
-    <name>foo</name>
-    <author>bar</author>
-    <publisher>foo</publisher>
-    <series>foo</series>
-    <year>2019</year>
-    <ISBN>978-5-94878-004-7</ISBN>
+    <country>Россия</country>
+    <currencyId>RUB</currencyId>
+    <dataTour>2019-03-29T00:00+00:00</dataTour>
+    <days>3</days>
+    <delivery>true</delivery>
     <description>foo</description>
-    <performed_by>foo</performed_by>
-    <performance_type>foo</performance_type>
-    <language>foo</language>
-    <volume>4</volume>
-    <part>3</part>
-    <format>DVD</format>
-    <storage>PDF</storage>
-    <recording_length>200.30</recording_length>
-    <table_of_contents>foo</table_of_contents>
+    <hotel_stars>3</hotel_stars>
+    <included>foo</included>
+    <meal>HB</meal>
+    <name>foo</name>
+    <price>200</price>
+    <region>baz</region>
+    <room>SNG</room>
+    <transport>bar</transport>
+    <url>http://example.com</url>
+    <worldRegion>foo</worldRegion>
 </offer>
 XML;
 
@@ -71,17 +66,58 @@ XML;
     public function testFailed()
     {
         try {
-            (new AudioBook)
+            (new Tour)
                 ->url('http://example.com')
                 ->price(200)
                 ->currencyId('USD')
                 ->categoryId(2)
-                ->name('foo')
-                ->author('bar')
-                ->year(2019)
                 ->get();
         } catch (Exception $exception) {
             $this->assertEquals('The id field is required.', $exception->getMessage());
+            $this->assertEquals(400, $exception->getCode());
+        }
+    }
+
+    public function testFailedDays()
+    {
+        try {
+            (new Tour)
+                ->id(1)
+                ->available()
+                ->categoryId(2)
+                ->currencyId('USD')
+                ->delivery(false)
+                ->price(200)
+                ->url('http://example.com')
+                ->get();
+
+            $this->assertTrue(false);
+        } catch (Exception $exception) {
+            $this->assertEquals('The days field is required.', $exception->getMessage());
+            $this->assertEquals(400, $exception->getCode());
+        }
+    }
+
+    public function testFailedCurrencyId()
+    {
+        try {
+            (new Tour)
+                ->id(1)
+                ->available()
+                ->categoryId(2)
+                ->currencyId('QWE')
+                ->days(3)
+                ->delivery(false)
+                ->included('foo')
+                ->name('foo')
+                ->price(200)
+                ->transport('bar')
+                ->url('http://example.com')
+                ->get();
+
+            $this->assertTrue(false);
+        } catch (Exception $exception) {
+            $this->assertEquals('The selected currency id is invalid.', $exception->getMessage());
             $this->assertEquals(400, $exception->getCode());
         }
     }

@@ -24,9 +24,16 @@ class Video extends BaseType
         return $this;
     }
 
-    public function starring(array $values): self
+    /**
+     * @param array|string $values
+     *
+     * @return \Helldar\Yandex\GoodsPrices\Services\Items\Types\Video
+     */
+    public function starring($values): self
     {
-        $this->addItem('starring', \implode(', ', $values));
+        $values = \is_array($values) ? \implode(', ', $values) : $values;
+
+        $this->addItem('starring', $values);
 
         return $this;
     }
@@ -79,7 +86,7 @@ class Video extends BaseType
     {
         return [
             'title'        => ['string', 'max:255'],
-            'starring'     => ['string', 'max:255'],
+            'starring'     => ['string'],
             'director'     => ['string', 'max:255'],
             'originalName' => ['string', 'max:255'],
             'country'      => ['string', 'max:255', Rule::in(Variables::COUNTRIES)],

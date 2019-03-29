@@ -2,63 +2,46 @@
 
 namespace Tests\Services\Types;
 
+use Carbon\Carbon;
 use DOMDocument;
 use Exception;
-use Helldar\Yandex\GoodsPrices\Services\Items\Types\AudioBook;
+use Helldar\Yandex\GoodsPrices\Services\Items\Types\EventTicket;
 use Tests\TestCase;
 
 class EventTicketTest extends TestCase
 {
     public function testSuccess()
     {
-        $actual = (new AudioBook)
+        $actual = (new EventTicket)
             ->id(1234)
-            ->available(true)
-            ->url('http://example.com')
-            ->price(200)
-            ->currencyId('USD')
+            ->available()
             ->categoryId(2)
+            ->currencyId('USD')
+            ->date(Carbon::now())
+            ->delivery(true)
+            ->hallPlan('http://example.com/image.jpg')
+            ->isKids(false)
+            ->isPremiere(true)
             ->name('foo')
-            ->author('bar')
-            ->publisher('foo')
-            ->series('foo')
-            ->year(2019)
-            ->isbn('978-5-94878-004-7')
-            ->description('foo')
-            ->performedBy('foo')
-            ->performanceType('foo')
-            ->language('foo')
-            ->volume(4)
-            ->part(3)
-            ->format('DVD')
-            ->storage('PDF')
-            ->recordingLength('200.30')
-            ->tableOfContents('foo')
+            ->place('foo')
+            ->price(200)
+            ->url('http://example.com')
             ->get();
 
         $source = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
-<offer id="1234" type="audiobook" available="true">
-    <url>http://example.com</url>
-    <price>200</price>
-    <currencyId>USD</currencyId>
+<offer id="1234" type="event-ticket" available="true">
     <categoryId>2</categoryId>
+    <currencyId>USD</currencyId>
+    <date>2019-03-23T19:27+00:00</date>
+    <delivery>true</delivery>
+    <hall_plan>http://example.com/image.jpg</hall_plan>
+    <is_kids>false</is_kids>
+    <is_premiere>true</is_premiere>
     <name>foo</name>
-    <author>bar</author>
-    <publisher>foo</publisher>
-    <series>foo</series>
-    <year>2019</year>
-    <ISBN>978-5-94878-004-7</ISBN>
-    <description>foo</description>
-    <performed_by>foo</performed_by>
-    <performance_type>foo</performance_type>
-    <language>foo</language>
-    <volume>4</volume>
-    <part>3</part>
-    <format>DVD</format>
-    <storage>PDF</storage>
-    <recording_length>200.30</recording_length>
-    <table_of_contents>foo</table_of_contents>
+    <place>foo</place>
+    <price>200</price>
+    <url>http://example.com</url>
 </offer>
 XML;
 
@@ -71,17 +54,35 @@ XML;
     public function testFailed()
     {
         try {
-            (new AudioBook)
+            (new EventTicket)
                 ->url('http://example.com')
                 ->price(200)
                 ->currencyId('USD')
                 ->categoryId(2)
                 ->name('foo')
-                ->author('bar')
-                ->year(2019)
                 ->get();
         } catch (Exception $exception) {
             $this->assertEquals('The id field is required.', $exception->getMessage());
+            $this->assertEquals(400, $exception->getCode());
+        }
+    }
+
+    public function testFailedName()
+    {
+        try {
+            (new EventTicket)
+                ->id(1)
+                ->available()
+                ->delivery(false)
+                ->url('http://example.com')
+                ->price(200)
+                ->currencyId('USD')
+                ->categoryId(2)
+                ->get();
+
+            $this->assertTrue(false);
+        } catch (Exception $exception) {
+            $this->assertEquals('The name field is required.', $exception->getMessage());
             $this->assertEquals(400, $exception->getCode());
         }
     }

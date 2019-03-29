@@ -13,47 +13,48 @@ class BookTest extends TestCase
     {
         $actual = (new Book)
             ->id(1234)
-            ->available(true)
-            ->url('http://example.com')
-            ->price(200)
-            ->currencyId('USD')
-            ->categoryId(2)
-            ->delivery(true)
             ->author('bar')
+            ->available()
+            ->binding('foo')
+            ->categoryId(2)
+            ->currencyId('USD')
+            ->delivery(true)
+            ->description('foo')
+            ->isbn('978-5-94878-004-7')
+            ->language('rus')
             ->name('foo')
+            ->pageExtent(4)
+            ->part(2)
+            ->price(200)
             ->publisher('foo')
             ->series('foo')
-            ->year(2019)
-            ->isbn('978-5-94878-004-7')
-            ->description('foo')
-            ->volume(3)
-            ->part(2)
-            ->language('rus')
-            ->binding('foo')
-            ->pageExtent(4)
             ->tableOfContents('foo')
+            ->url('http://example.com')
+            ->volume(3)
+            ->year(2019)
             ->get();
 
         $source = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
-<offer id="1234" type="audiobook" available="true">
-    <url>http://example.com</url>
-    <price>200</price>
-    <currencyId>USD</currencyId>
-    <categoryId>2</categoryId>
+<offer id="1234" type="book" available="true">
+    <ISBN>978-5-94878-004-7</ISBN>
     <author>bar</author>
+    <binding>PDF</binding>
+    <categoryId>2</categoryId>
+    <currencyId>USD</currencyId>
+    <delivery>false</delivery>
+    <description>foo</description>
+    <language>foo</language>
     <name>foo</name>
+    <page_extent>200.30</page_extent>
+    <part>3</part>
+    <price>200</price>
     <publisher>foo</publisher>
     <series>foo</series>
-    <year>2019</year>
-    <ISBN>978-5-94878-004-7</ISBN>
-    <description>foo</description>
-    <volume>4</volume>
-    <part>3</part>
-    <language>foo</language>
-    <binding>PDF</binding>
-    <page_extent>200.30</page_extent>
     <table_of_contents>foo</table_of_contents>
+    <url>http://example.com</url>
+    <volume>4</volume>
+    <year>2019</year>
 </offer>
 XML;
 
@@ -86,7 +87,7 @@ XML;
         try {
             (new Book)
                 ->id(1)
-                ->available(true)
+                ->available()
                 ->url('http://example.com')
                 ->price(200)
                 ->currencyId('USD')
