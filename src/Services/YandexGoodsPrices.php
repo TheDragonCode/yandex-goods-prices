@@ -3,6 +3,7 @@
 namespace Helldar\Yandex\GoodsPrices\Services;
 
 use Helldar\Core\Xml\Facades\Xml;
+use Helldar\Core\Xml\Helpers\Str;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 
@@ -42,21 +43,27 @@ class YandexGoodsPrices
 
     public function name(string $value): self
     {
-        $this->name = $this->xml->makeItem('name', \trim($value));
+        $value = Str::e(\trim($value));
+
+        $this->name = $this->xml->makeItem('name', $value);
 
         return $this;
     }
 
     public function company(string $value): self
     {
-        $this->company = $this->xml->makeItem('company', \trim($value));
+        $value = Str::e(\trim($value));
+
+        $this->company = $this->xml->makeItem('company', $value);
 
         return $this;
     }
 
     public function url(string $url): self
     {
-        $this->url = $this->xml->makeItem('url', \trim($url));
+        $value = Str::e(\trim($url));
+
+        $this->url = $this->xml->makeItem('url', $value);
 
         return $this;
     }

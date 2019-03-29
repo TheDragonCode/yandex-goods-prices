@@ -3,6 +3,7 @@
 namespace Helldar\Yandex\GoodsPrices\Services;
 
 use DOMElement;
+use Helldar\Core\Xml\Helpers\Str;
 use Helldar\Yandex\GoodsPrices\Interfaces\XmlItems;
 use Helldar\Yandex\GoodsPrices\Traits\Xml;
 
@@ -42,7 +43,7 @@ class Offer implements XmlItems
 
     public function url(string $value): self
     {
-        $this->url = $value;
+        $this->url = Str::e($value);
 
         return $this;
     }
@@ -77,7 +78,7 @@ class Offer implements XmlItems
 
     public function name(string $value): self
     {
-        $this->name = $value;
+        $this->name = Str::e($value);
 
         return $this;
     }
