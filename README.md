@@ -140,6 +140,8 @@ for ($i = 0; $i < 10; $i++) {
     // ...
 ```
 
+You can also see the implementation in the [tests](tests) and read the [official documentation](https://yandex.ru/support/webmaster/goods-prices/technical-requirements.html).
+
 
 ## License
 
