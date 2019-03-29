@@ -156,26 +156,18 @@ You can also see the implementation in the [tests](tests) and read the [official
 To access a type with methods available to it, use the call:
 ```php
 \app('yandex_goods_prices')->offer()->audioBook()
-    // ...
     
 \app('yandex_goods_prices')->offer()->book()
-    // ...
     
 \app('yandex_goods_prices')->offer()->eventTicket()
-    // ...
     
 \app('yandex_goods_prices')->offer()->music()
-    // ...
     
 \app('yandex_goods_prices')->offer()->tour()
-    // ...
     
 \app('yandex_goods_prices')->offer()->video()
-    // ...
     
 \app('yandex_goods_prices')->offer()->other()
-    // ...
-    
 ```
 
 
