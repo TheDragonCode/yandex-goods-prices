@@ -143,6 +143,42 @@ for ($i = 0; $i < 10; $i++) {
 You can also see the implementation in the [tests](tests) and read the [official documentation](https://yandex.ru/support/webmaster/goods-prices/technical-requirements.html).
 
 
+### Available offer types
+
+* AudioBook
+* Book
+* EventTicket
+* Music
+* Tour
+* Video
+* Other
+
+To access a type with methods available to it, use the call:
+```php
+\app('yandex_goods_prices')->offer()->audioBook()
+    // ...
+    
+\app('yandex_goods_prices')->offer()->book()
+    // ...
+    
+\app('yandex_goods_prices')->offer()->eventTicket()
+    // ...
+    
+\app('yandex_goods_prices')->offer()->music()
+    // ...
+    
+\app('yandex_goods_prices')->offer()->tour()
+    // ...
+    
+\app('yandex_goods_prices')->offer()->video()
+    // ...
+    
+\app('yandex_goods_prices')->offer()->other()
+    // ...
+    
+```
+
+
 ## License
 
 This package is released under the [MIT License](LICENSE).
