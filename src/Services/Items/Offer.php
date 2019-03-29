@@ -6,6 +6,7 @@ use Helldar\Yandex\GoodsPrices\Services\Items\Types\AudioBook;
 use Helldar\Yandex\GoodsPrices\Services\Items\Types\Book;
 use Helldar\Yandex\GoodsPrices\Services\Items\Types\Music;
 use Helldar\Yandex\GoodsPrices\Services\Items\Types\Other;
+use Helldar\Yandex\GoodsPrices\Services\Items\Types\Tour;
 
 class Offer
 {
@@ -27,5 +28,10 @@ class Offer
     public function music(): Music
     {
         return new Music;
+    }
+
+    public function tour(): Tour
+    {
+        return new Tour;
     }
 }
