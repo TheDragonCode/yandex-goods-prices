@@ -196,7 +196,13 @@ class Service
     private function checkOfferInstance($expected, $actual): bool
     {
         if (\is_array($expected)) {
-            return \in_array($actual, $expected);
+            foreach ($expected as $instance) {
+                if ($this->checkOfferInstance($instance, $actual)) {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         return $actual instanceof $expected;
