@@ -99,7 +99,7 @@ class Service
      */
     public function currencies(...$items): self
     {
-        $this->each(Currency::class, $items, $this->currencies);
+        $this->each($this->currencies, Currency::class, $items);
 
         return $this;
     }
@@ -111,7 +111,7 @@ class Service
      */
     public function categories(...$items): self
     {
-        $this->each(Category::class, $items, $this->categories);
+        $this->each($this->categories, Category::class, $items);
 
         return $this;
     }
@@ -133,7 +133,7 @@ class Service
             Video::class,
         ];
 
-        $this->each($instances, $items, $this->offers);
+        $this->each($this->offers, $instances, $items);
 
         return $this;
     }
@@ -170,23 +170,21 @@ class Service
         $this->offers     = $this->xml->makeItem('offers');
     }
 
-    private function each($instance, $items, &$parent)
+    private function each(&$parent, $instance, $items, $recurse = true)
     {
-        foreach ($items as $item) {
+        \array_map(function ($item) use (&$parent, $instance, $recurse) {
             $is_instance = $this->checkOfferInstance($instance, $item);
 
             if ($is_instance) {
                 $this->xml->appendChild($parent, $item->get());
-            } elseif (\is_array($item)) {
-                foreach ($item as $element) {
-                    $is_instance = $this->checkOfferInstance($instance, $item);
 
-                    if ($is_instance) {
-                        $this->xml->appendChild($parent, $element->get());
-                    }
-                }
+                return;
             }
-        }
+
+            if ($recurse && \is_array($item)) {
+                $this->each($parent, $instance, $item, false);
+            }
+        }, $items);
     }
 
     /**
