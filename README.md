@@ -7,6 +7,7 @@
     <a href="https://packagist.org/packages/andrey-helldar/yandex-goods-prices"><img src="https://img.shields.io/packagist/dt/andrey-helldar/yandex-goods-prices.svg?style=flat-square" alt="Total Downloads" /></a>
     <a href="https://packagist.org/packages/andrey-helldar/yandex-goods-prices"><img src="https://poser.pugx.org/andrey-helldar/yandex-goods-prices/v/stable?format=flat-square" alt="Latest Stable Version" /></a>
     <a href="https://packagist.org/packages/andrey-helldar/yandex-goods-prices"><img src="https://poser.pugx.org/andrey-helldar/yandex-goods-prices/v/unstable?format=flat-square" alt="Latest Unstable Version" /></a>
+    <a href="https://travis-ci.org/andrey-helldar/yandex-goods-prices"><img src="https://travis-ci.org/andrey-helldar/yandex-goods-prices.svg?branch=master" alt="Travis CI" /></a>
     <a href="LICENSE"><img src="https://poser.pugx.org/andrey-helldar/yandex-goods-prices/license?format=flat-square" alt="License" /></a>
 </p>
 
