@@ -84,7 +84,7 @@ class Service
         $value = Str::e(\trim($url));
 
         $this->validate(\compact('value'), [
-            'value' => 'required|url',
+            'value' => 'required|active_url',
         ]);
 
         $this->url = $this->xml->makeItem('url', $value);
