@@ -36,6 +36,27 @@ class Other extends BaseType
         return $this;
     }
 
+    /**
+     * @param string $value
+     *
+     * @return \Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Other
+     *
+     * @see https://yandex.ru/support/webmaster/goods-prices/technical-requirements.html#concept3__description-name
+     */
+    public function name(string $value): self
+    {
+        $this->addItem('name', $value);
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return \Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Other
+     *
+     * @see https://yandex.ru/support/webmaster/goods-prices/technical-requirements.html#concept3__description-name
+     */
     public function description(string $value): self
     {
         $this->addItem('description', $value);
@@ -97,6 +118,7 @@ class Other extends BaseType
     protected function rules(): array
     {
         return [
+            'name'        => ['string', 'max:120'],
             'description' => ['string', 'max:175'],
             'model'       => ['string', 'max:255'],
             'sales_notes' => ['string', 'max:50'],
