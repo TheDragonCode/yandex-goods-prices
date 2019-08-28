@@ -4,6 +4,7 @@ namespace Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes;
 
 use Helldar\Yandex\GoodsPrices\Helpers\Variables;
 use Illuminate\Validation\Rule;
+use function strip_tags;
 
 /**
  * @see https://yandex.ru/support/webmaster/goods-prices/technical-requirements.html#tag_11__vendor-model
@@ -45,7 +46,7 @@ class Other extends BaseType
      */
     public function name(string $value): self
     {
-        $this->addItem('name', $value);
+        $this->addItem('name', strip_tags($value));
 
         return $this;
     }
@@ -59,7 +60,7 @@ class Other extends BaseType
      */
     public function description(string $value): self
     {
-        $this->addItem('description', $value);
+        $this->addItem('description', strip_tags($value));
 
         return $this;
     }
