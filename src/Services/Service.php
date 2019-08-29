@@ -13,6 +13,7 @@ use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Music;
 use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Other;
 use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Tour;
 use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Video;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\WithoutType;
 use Helldar\Yandex\GoodsPrices\Traits\Validator;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
@@ -131,6 +132,7 @@ class Service
             Other::class,
             Tour::class,
             Video::class,
+            WithoutType::class,
         ];
 
         $this->each($this->offers, $instances, $items);
