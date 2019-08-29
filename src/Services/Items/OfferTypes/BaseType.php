@@ -13,6 +13,7 @@ abstract class BaseType implements Item
 {
     use Xml, Validator, BaseMethods, BaseRules;
 
+    /** @var string|null */
     protected $type = 'vendor.model';
 
     private $required_items = [];

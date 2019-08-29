@@ -9,6 +9,7 @@ use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Music;
 use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Other;
 use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Tour;
 use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\Video;
+use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\WithoutType;
 
 class Offer
 {
@@ -45,5 +46,10 @@ class Offer
     public function eventTicket(): EventTicket
     {
         return new EventTicket;
+    }
+
+    public function withoutType(): WithoutType
+    {
+        return new WithoutType;
     }
 }

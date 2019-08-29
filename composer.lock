@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "andrey-helldar/xml-core",
-            "version": "v1.3.0",
+            "version": "v1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andrey-helldar/xml-core.git",
-                "reference": "5c09170a3e58424e21c57a933053673fec3424c6"
+                "reference": "20c6e46bfb08a7c8561052b4759f565dc836e504"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andrey-helldar/xml-core/zipball/5c09170a3e58424e21c57a933053673fec3424c6",
-                "reference": "5c09170a3e58424e21c57a933053673fec3424c6",
+                "url": "https://api.github.com/repos/andrey-helldar/xml-core/zipball/20c6e46bfb08a7c8561052b4759f565dc836e504",
+                "reference": "20c6e46bfb08a7c8561052b4759f565dc836e504",
                 "shasum": ""
             },
             "require": {
@@ -59,7 +59,7 @@
                 "core",
                 "xml"
             ],
-            "time": "2019-08-23T08:00:50+00:00"
+            "time": "2019-08-29T11:30:25+00:00"
         },
         {
             "name": "doctrine/inflector",

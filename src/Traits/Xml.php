@@ -13,7 +13,8 @@ trait Xml
     private function xmlItem(string $name, $value = null, array $attributes = []): DOMElement
     {
         if (is_null($this->doc)) {
-            $this->doc = XmlFacade::init();
+            $this->doc = XmlFacade::init()
+                ->setSkipEmptyAttributes();
         }
 
         return $this->doc->makeItem($name, $value, $attributes);
