@@ -11,7 +11,7 @@ class AudioBookTest extends TestCase
 {
     public function testSuccess()
     {
-        $actual = (new AudioBook)
+        $actual = (new AudioBook())
             ->id(1234)
             ->author('bar')
             ->available()
@@ -73,7 +73,7 @@ XML;
     public function testFailed()
     {
         try {
-            (new AudioBook)
+            (new AudioBook())
                 ->url('http://example.com')
                 ->price(200)
                 ->currencyId('USD')

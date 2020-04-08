@@ -11,21 +11,21 @@ class YandexGoodsPrices
 {
     public function offer(): Offer
     {
-        return new Offer;
+        return new Offer();
     }
 
     public function category(): Category
     {
-        return new Category;
+        return new Category();
     }
 
     public function currency(): Currency
     {
-        return new Currency;
+        return new Currency();
     }
 
     public function service(): Service
     {
-        return new Service;
+        return new Service();
     }
 }

@@ -11,7 +11,7 @@ class VideoTest extends TestCase
 {
     public function testSuccess()
     {
-        $actual = (new Video)
+        $actual = (new Video())
             ->id(1234)
             ->adult(true)
             ->available()
@@ -57,7 +57,7 @@ XML;
     public function testFailed()
     {
         try {
-            (new Video)
+            (new Video())
                 ->url('http://example.com')
                 ->price(200)
                 ->currencyId('USD')
@@ -72,7 +72,7 @@ XML;
     public function testFailedTitle()
     {
         try {
-            (new Video)
+            (new Video())
                 ->id(1)
                 ->available()
                 ->delivery(false)
@@ -92,7 +92,7 @@ XML;
     public function testFailedCurrencyId()
     {
         try {
-            (new Video)
+            (new Video())
                 ->id(1)
                 ->available()
                 ->categoryId(2)

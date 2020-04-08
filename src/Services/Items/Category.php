@@ -13,7 +13,8 @@ use Helldar\Yandex\GoodsPrices\Traits\Xml;
  */
 class Category implements Item
 {
-    use Xml, Validator;
+    use Xml;
+    use Validator;
 
     private $id;
 

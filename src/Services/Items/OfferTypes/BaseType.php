@@ -11,7 +11,10 @@ use Helldar\Yandex\GoodsPrices\Traits\Xml;
 
 abstract class BaseType implements Item
 {
-    use Xml, Validator, BaseMethods, BaseRules;
+    use Xml;
+    use Validator;
+    use BaseMethods;
+    use BaseRules;
 
     /** @var string|null */
     protected $type = 'vendor.model';

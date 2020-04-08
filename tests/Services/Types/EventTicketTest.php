@@ -12,7 +12,7 @@ class EventTicketTest extends TestCase
 {
     public function testSuccess()
     {
-        $actual = (new EventTicket)
+        $actual = (new EventTicket())
             ->id(1234)
             ->available()
             ->categoryId(2)
@@ -54,7 +54,7 @@ XML;
     public function testFailed()
     {
         try {
-            (new EventTicket)
+            (new EventTicket())
                 ->url('http://example.com')
                 ->price(200)
                 ->currencyId('USD')
@@ -70,7 +70,7 @@ XML;
     public function testFailedName()
     {
         try {
-            (new EventTicket)
+            (new EventTicket())
                 ->id(1)
                 ->available()
                 ->delivery(false)

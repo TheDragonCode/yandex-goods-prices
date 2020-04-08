@@ -11,7 +11,7 @@ class CurrencyTest extends TestCase
 {
     public function testGet()
     {
-        $item = (new Currency)
+        $item = (new Currency())
             ->id('USD')
             ->rate(3)
             ->get();
@@ -29,14 +29,14 @@ class CurrencyTest extends TestCase
 
     public function testId()
     {
-        $item = (new Currency)->id('RUR');
+        $item = (new Currency())->id('RUR');
 
         $this->assertTrue($item instanceof Currency);
     }
 
     public function testName()
     {
-        $item = (new Currency)->rate(3);
+        $item = (new Currency())->rate(3);
 
         $this->assertTrue($item instanceof Currency);
     }

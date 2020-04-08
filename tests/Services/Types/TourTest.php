@@ -12,7 +12,7 @@ class TourTest extends TestCase
 {
     public function testSuccess()
     {
-        $actual = (new Tour)
+        $actual = (new Tour())
             ->id(1234)
             ->available()
             ->categoryId(2)
@@ -66,7 +66,7 @@ XML;
     public function testFailed()
     {
         try {
-            (new Tour)
+            (new Tour())
                 ->url('http://example.com')
                 ->price(200)
                 ->currencyId('USD')
@@ -81,7 +81,7 @@ XML;
     public function testFailedDays()
     {
         try {
-            (new Tour)
+            (new Tour())
                 ->id(1)
                 ->available()
                 ->categoryId(2)
@@ -101,7 +101,7 @@ XML;
     public function testFailedCurrencyId()
     {
         try {
-            (new Tour)
+            (new Tour())
                 ->id(1)
                 ->available()
                 ->categoryId(2)

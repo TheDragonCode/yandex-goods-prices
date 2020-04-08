@@ -11,7 +11,7 @@ class BookTest extends TestCase
 {
     public function testSuccess()
     {
-        $actual = (new Book)
+        $actual = (new Book())
             ->id(1234)
             ->author('bar')
             ->available()
@@ -67,7 +67,7 @@ XML;
     public function testFailed()
     {
         try {
-            (new Book)
+            (new Book())
                 ->url('http://example.com')
                 ->price(200)
                 ->currencyId('USD')
@@ -85,7 +85,7 @@ XML;
     public function testFailedName()
     {
         try {
-            (new Book)
+            (new Book())
                 ->id(1)
                 ->available()
                 ->url('http://example.com')
