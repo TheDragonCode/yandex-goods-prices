@@ -15,41 +15,41 @@ class Offer
 {
     public function other(): Other
     {
-        return new Other;
+        return new Other();
     }
 
     public function book(): Book
     {
-        return new Book;
+        return new Book();
     }
 
     public function audioBook(): AudioBook
     {
-        return new AudioBook;
+        return new AudioBook();
     }
 
     public function music(): Music
     {
-        return new Music;
+        return new Music();
     }
 
     public function video(): Video
     {
-        return new Video;
+        return new Video();
     }
 
     public function tour(): Tour
     {
-        return new Tour;
+        return new Tour();
     }
 
     public function eventTicket(): EventTicket
     {
-        return new EventTicket;
+        return new EventTicket();
     }
 
     public function withoutType(): WithoutType
     {
-        return new WithoutType;
+        return new WithoutType();
     }
 }

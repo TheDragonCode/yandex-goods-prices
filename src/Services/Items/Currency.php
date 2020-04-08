@@ -15,7 +15,8 @@ use Illuminate\Validation\Rule;
  */
 class Currency implements Item
 {
-    use Xml, Validator;
+    use Xml;
+    use Validator;
 
     private $id = 'RUB';
 
@@ -35,7 +36,7 @@ class Currency implements Item
     }
 
     /**
-     * @param string|float $rate
+     * @param float|string $rate
      *
      * @return \Helldar\Yandex\GoodsPrices\Services\Items\Currency
      */

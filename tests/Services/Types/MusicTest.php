@@ -11,7 +11,7 @@ class MusicTest extends TestCase
 {
     public function testSuccess()
     {
-        $actual = (new Music)
+        $actual = (new Music())
             ->id(1234)
             ->artist('foo')
             ->available()
@@ -49,7 +49,7 @@ XML;
     public function testFailed()
     {
         try {
-            (new Music)
+            (new Music())
                 ->url('http://example.com')
                 ->price(200)
                 ->currencyId('USD')
@@ -64,7 +64,7 @@ XML;
     public function testFailedTitle()
     {
         try {
-            (new Music)
+            (new Music())
                 ->id(1)
                 ->available()
                 ->delivery(false)
@@ -84,7 +84,7 @@ XML;
     public function testFailedCurrencyId()
     {
         try {
-            (new Music)
+            (new Music())
                 ->id(1)
                 ->available()
                 ->categoryId(2)

@@ -11,7 +11,7 @@ class CategoryTest extends TestCase
 {
     public function testGet()
     {
-        $item = (new Category)
+        $item = (new Category())
             ->id(1)
             ->name('foo')
             ->get();
@@ -30,14 +30,14 @@ class CategoryTest extends TestCase
 
     public function testId()
     {
-        $item = (new Category)->id(1);
+        $item = (new Category())->id(1);
 
         $this->assertTrue($item instanceof Category);
     }
 
     public function testName()
     {
-        $item = (new Category)->name('foo');
+        $item = (new Category())->name('foo');
 
         $this->assertTrue($item instanceof Category);
     }

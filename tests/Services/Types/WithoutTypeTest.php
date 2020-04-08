@@ -11,7 +11,7 @@ class WithoutTypeTest extends TestCase
 {
     public function testSuccess()
     {
-        $actual = (new WithoutType)
+        $actual = (new WithoutType())
             ->id(1234)
             ->available()
             ->categoryId(2)
@@ -43,7 +43,7 @@ XML;
     public function testFailed()
     {
         try {
-            (new WithoutType)
+            (new WithoutType())
                 ->url('http://example.com')
                 ->price(200)
                 ->currencyId('USD')

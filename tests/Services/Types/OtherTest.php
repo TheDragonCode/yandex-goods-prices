@@ -11,7 +11,7 @@ class OtherTest extends TestCase
 {
     public function testSuccess()
     {
-        $actual = (new Other)
+        $actual = (new Other())
             ->id(1234)
             ->available()
             ->categoryId(2)
@@ -61,7 +61,7 @@ XML;
     public function testFailed()
     {
         try {
-            (new Other)
+            (new Other())
                 ->url('http://example.com')
                 ->price(200)
                 ->currencyId('USD')
