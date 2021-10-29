@@ -1,6 +1,6 @@
 # Yandex Goods Prices
 
-<img src="https://preview.dragon-code.pro/TheDragonCode/yandex-goods-prices.svg?brand=laravel" width="100%" height="320" alt="Yandex Goods Prices"/>
+<img src="https://preview.dragon-code.pro/TheDragonCode/yandex-goods-prices.svg?brand=laravel" alt="Yandex Goods Prices"/>
 
 <p align="center">
     <a href="https://styleci.io/repos/178002083"><img src="https://styleci.io/repos/178002083/shield" alt="StyleCI" /></a>
