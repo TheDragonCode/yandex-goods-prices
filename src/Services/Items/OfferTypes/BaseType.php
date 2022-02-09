@@ -8,6 +8,10 @@ use Helldar\Yandex\GoodsPrices\Traits\Items\BaseMethods;
 use Helldar\Yandex\GoodsPrices\Traits\Items\BaseRules;
 use Helldar\Yandex\GoodsPrices\Traits\Validator;
 use Helldar\Yandex\GoodsPrices\Traits\Xml;
+use function array_push;
+use function compact;
+use function in_array;
+use function ksort;
 
 abstract class BaseType implements Item
 {
@@ -35,7 +39,7 @@ abstract class BaseType implements Item
     protected function requiredItems(string ...$values)
     {
         foreach ($values as $value) {
-            \array_push($this->required_items, $value);
+            array_push($this->required_items, $value);
         }
     }
 
@@ -60,15 +64,15 @@ abstract class BaseType implements Item
         $available = $this->item('available');
         $type      = $this->type;
 
-        return $this->xmlItem('offer', null, \compact('id', 'type', 'available'));
+        return $this->xmlItem('offer', null, compact('id', 'type', 'available'));
     }
 
     private function make(DOMElement $offer): DOMElement
     {
-        \ksort($this->items);
+        ksort($this->items);
 
         foreach ($this->items as $key => $value) {
-            if (\in_array($key, ['id', 'type', 'available'])) {
+            if (in_array($key, ['id', 'type', 'available'])) {
                 continue;
             }
 

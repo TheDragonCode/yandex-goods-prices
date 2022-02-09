@@ -28,22 +28,22 @@ class EventTicketTest extends TestCase
             ->url('http://example.com')
             ->get();
 
-        $source = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<offer id="1234" type="event-ticket" available="true">
-    <categoryId>2</categoryId>
-    <currencyId>USD</currencyId>
-    <date>2019-03-23T19:27+00:00</date>
-    <delivery>true</delivery>
-    <hall_plan>http://example.com/image.jpg</hall_plan>
-    <is_kids>false</is_kids>
-    <is_premiere>true</is_premiere>
-    <name>foo</name>
-    <place>foo</place>
-    <price>200</price>
-    <url>http://example.com</url>
-</offer>
-XML;
+        $source = <<<'XML'
+            <?xml version="1.0" encoding="UTF-8"?>
+            <offer id="1234" type="event-ticket" available="true">
+                <categoryId>2</categoryId>
+                <currencyId>USD</currencyId>
+                <date>2019-03-23T19:27+00:00</date>
+                <delivery>true</delivery>
+                <hall_plan>http://example.com/image.jpg</hall_plan>
+                <is_kids>false</is_kids>
+                <is_premiere>true</is_premiere>
+                <name>foo</name>
+                <place>foo</place>
+                <price>200</price>
+                <url>http://example.com</url>
+            </offer>
+            XML;
 
         $expected = new DOMDocument('1.0', 'utf-8');
         $expected->loadXML($source);

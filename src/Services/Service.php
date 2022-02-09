@@ -2,6 +2,7 @@
 
 namespace Helldar\Yandex\GoodsPrices\Services;
 
+use DOMElement;
 use Helldar\Core\Xml\Facades\Xml;
 use Helldar\Core\Xml\Helpers\Str;
 use Helldar\Yandex\GoodsPrices\Services\Items\Category;
@@ -17,6 +18,11 @@ use Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes\WithoutType;
 use Helldar\Yandex\GoodsPrices\Traits\Validator;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
+use function array_map;
+use function compact;
+use function date;
+use function is_array;
+use function trim;
 
 class Service
 {
@@ -28,22 +34,22 @@ class Service
     /** @var \Illuminate\Contracts\Filesystem\Filesystem|\Illuminate\Support\Facades\Storage */
     protected $storage;
 
-    /** @var \DOMElement */
+    /** @var DOMElement */
     private $name;
 
-    /** @var \DOMElement */
+    /** @var DOMElement */
     private $company;
 
-    /** @var \DOMElement */
+    /** @var DOMElement */
     private $url;
 
-    /** @var \DOMElement */
+    /** @var DOMElement */
     private $currencies;
 
-    /** @var \DOMElement */
+    /** @var DOMElement */
     private $categories;
 
-    /** @var \DOMElement */
+    /** @var DOMElement */
     private $offers;
 
     public function __construct()
@@ -56,9 +62,9 @@ class Service
 
     public function name(string $value): self
     {
-        $value = Str::e(\trim($value));
+        $value = Str::e(trim($value));
 
-        $this->validate(\compact('value'), [
+        $this->validate(compact('value'), [
             'value' => 'required|string|max:20',
         ]);
 
@@ -69,9 +75,9 @@ class Service
 
     public function company(string $value): self
     {
-        $value = Str::e(\trim($value));
+        $value = Str::e(trim($value));
 
-        $this->validate(\compact('value'), [
+        $this->validate(compact('value'), [
             'value' => 'required|string|max:255',
         ]);
 
@@ -82,9 +88,9 @@ class Service
 
     public function url(string $url): self
     {
-        $value = Str::e(\trim($url));
+        $value = Str::e(trim($url));
 
-        $this->validate(\compact('value'), [
+        $this->validate(compact('value'), [
             'value' => 'required|active_url',
         ]);
 
@@ -140,7 +146,7 @@ class Service
         return $this;
     }
 
-    public function save(string $filename = null): bool
+    public function save(?string $filename = null): bool
     {
         $path = $filename ?: Config::get('yandex_goods_prices.filename');
 
@@ -161,7 +167,7 @@ class Service
     private function initXml()
     {
         $root          = 'yml_catalog';
-        $attributes    = ['date' => \date('Y-m-d H:i')];
+        $attributes    = ['date' => date('Y-m-d H:i')];
         $format_output = Config::get('yandex_goods_prices.format_output', false);
 
         $this->xml = Xml::init($root, $attributes, $format_output)
@@ -174,7 +180,7 @@ class Service
 
     private function each(&$parent, $instance, $items, $recurse = true)
     {
-        \array_map(function ($item) use (&$parent, $instance, $recurse) {
+        array_map(function ($item) use (&$parent, $instance, $recurse) {
             $is_instance = $this->checkOfferInstance($instance, $item);
 
             if ($is_instance) {
@@ -183,7 +189,7 @@ class Service
                 return;
             }
 
-            if ($recurse && \is_array($item)) {
+            if ($recurse && is_array($item)) {
                 $this->each($parent, $instance, $item, false);
             }
         }, $items);
@@ -197,7 +203,7 @@ class Service
      */
     private function checkOfferInstance($expected, $actual): bool
     {
-        if (\is_array($expected)) {
+        if (is_array($expected)) {
             foreach ($expected as $instance) {
                 if ($this->checkOfferInstance($instance, $actual)) {
                     return true;

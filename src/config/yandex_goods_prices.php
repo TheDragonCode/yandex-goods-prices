@@ -9,9 +9,7 @@ return [
 
     'storage' => env('YANDEX_GOODS_PRICES_STORAGE', 'public'),
 
-    /*
-     * Nicely formats output with indentation and extra space.
-     */
+    // Nicely formats output with indentation and extra space.
 
     'format_output' => env('YANDEX_GOODS_PRICES_FORMAT_OUTPUT', false),
 

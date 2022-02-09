@@ -34,29 +34,29 @@ class BookTest extends TestCase
             ->year(2019)
             ->get();
 
-        $source = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<offer id="1234" type="book" available="true">
-    <ISBN>978-5-94878-004-7</ISBN>
-    <author>bar</author>
-    <binding>PDF</binding>
-    <categoryId>2</categoryId>
-    <currencyId>USD</currencyId>
-    <delivery>false</delivery>
-    <description>foo</description>
-    <language>foo</language>
-    <name>foo</name>
-    <page_extent>200.30</page_extent>
-    <part>3</part>
-    <price>200</price>
-    <publisher>foo</publisher>
-    <series>foo</series>
-    <table_of_contents>foo</table_of_contents>
-    <url>http://example.com</url>
-    <volume>4</volume>
-    <year>2019</year>
-</offer>
-XML;
+        $source = <<<'XML'
+            <?xml version="1.0" encoding="UTF-8"?>
+            <offer id="1234" type="book" available="true">
+                <ISBN>978-5-94878-004-7</ISBN>
+                <author>bar</author>
+                <binding>PDF</binding>
+                <categoryId>2</categoryId>
+                <currencyId>USD</currencyId>
+                <delivery>false</delivery>
+                <description>foo</description>
+                <language>foo</language>
+                <name>foo</name>
+                <page_extent>200.30</page_extent>
+                <part>3</part>
+                <price>200</price>
+                <publisher>foo</publisher>
+                <series>foo</series>
+                <table_of_contents>foo</table_of_contents>
+                <url>http://example.com</url>
+                <volume>4</volume>
+                <year>2019</year>
+            </offer>
+            XML;
 
         $expected = new DOMDocument('1.0', 'utf-8');
         $expected->loadXML($source);

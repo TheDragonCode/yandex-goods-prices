@@ -7,6 +7,8 @@ use Helldar\Core\Xml\Helpers\Str;
 use Helldar\Yandex\GoodsPrices\Interfaces\Item;
 use Helldar\Yandex\GoodsPrices\Traits\Validator;
 use Helldar\Yandex\GoodsPrices\Traits\Xml;
+use function compact;
+use function trim;
 
 /**
  * @see https://yandex.ru/support/webmaster/goods-prices/technical-requirements.html#concept3__categories
@@ -24,7 +26,7 @@ class Category implements Item
 
     public function id(int $id): self
     {
-        $this->validate(\compact('id'), [
+        $this->validate(compact('id'), [
             'id' => ['required', 'integer', 'min:1'],
         ]);
 
@@ -35,7 +37,7 @@ class Category implements Item
 
     public function parentId(int $parent_id): self
     {
-        $this->validate(\compact('parent_id'), [
+        $this->validate(compact('parent_id'), [
             'parent_id' => ['required', 'integer', 'min:1'],
         ]);
 
@@ -46,11 +48,11 @@ class Category implements Item
 
     public function name(string $value): self
     {
-        $this->validate(\compact('value'), [
+        $this->validate(compact('value'), [
             'value' => ['required', 'string'],
         ]);
 
-        $this->name = \trim($value);
+        $this->name = trim($value);
 
         return $this;
     }

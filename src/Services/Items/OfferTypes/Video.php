@@ -4,6 +4,9 @@ namespace Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes;
 
 use Helldar\Yandex\GoodsPrices\Helpers\Variables;
 use Illuminate\Validation\Rule;
+use function date;
+use function implode;
+use function is_array;
 
 /**
  * @see https://yandex.ru/support/webmaster/goods-prices/technical-requirements.html#tag_11__artist-title
@@ -31,7 +34,7 @@ class Video extends BaseType
      */
     public function starring($values): self
     {
-        $values = \is_array($values) ? \implode(', ', $values) : $values;
+        $values = is_array($values) ? implode(', ', $values) : $values;
 
         $this->addItem('starring', $values);
 
@@ -90,7 +93,7 @@ class Video extends BaseType
             'director'     => ['string', 'max:255'],
             'originalName' => ['string', 'max:255'],
             'country'      => ['string', 'max:255', Rule::in(Variables::COUNTRIES)],
-            'year'         => ['integer', 'max:' . \date('Y')],
+            'year'         => ['integer', 'max:' . date('Y')],
             'media'        => ['string', 'max:255'],
             'adult'        => ['string', 'max:255', Rule::in(Variables::BOOLEAN)],
         ];

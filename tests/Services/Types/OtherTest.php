@@ -31,26 +31,26 @@ class OtherTest extends TestCase
             ->vendorCode('foo')
             ->get();
 
-        $source = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<offer id="1234" type="audiobook" available="true">
-    <categoryId>2</categoryId>
-    <country_of_origin>Россия</country_of_origin>
-    <currencyId>2</currencyId>
-    <delivery>true</delivery>
-    <delivery-options>200</delivery-options>
-    <description>foo</description>
-    <downloadable>true</downloadable>
-    <manufacturer_warranty>foo</manufacturer_warranty>
-    <model>bar</model>
-    <price>200</price>
-    <sales_notes>foo</sales_notes>
-    <typePrefix>foo</typePrefix>
-    <url>http://example.com</url>
-    <vendor>FOO</vendor>
-    <vendorCode>foo</vendorCode>
-</offer>
-XML;
+        $source = <<<'XML'
+            <?xml version="1.0" encoding="UTF-8"?>
+            <offer id="1234" type="audiobook" available="true">
+                <categoryId>2</categoryId>
+                <country_of_origin>Россия</country_of_origin>
+                <currencyId>2</currencyId>
+                <delivery>true</delivery>
+                <delivery-options>200</delivery-options>
+                <description>foo</description>
+                <downloadable>true</downloadable>
+                <manufacturer_warranty>foo</manufacturer_warranty>
+                <model>bar</model>
+                <price>200</price>
+                <sales_notes>foo</sales_notes>
+                <typePrefix>foo</typePrefix>
+                <url>http://example.com</url>
+                <vendor>FOO</vendor>
+                <vendorCode>foo</vendorCode>
+            </offer>
+            XML;
 
         $expected = new DOMDocument('1.0', 'utf-8');
         $expected->loadXML($source);

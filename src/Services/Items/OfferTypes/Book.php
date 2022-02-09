@@ -2,6 +2,8 @@
 
 namespace Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes;
 
+use function date;
+
 /**
  * @see https://yandex.ru/support/webmaster/goods-prices/technical-requirements.html#tag_11__book
  */
@@ -112,7 +114,7 @@ class Book extends BaseType
             'name'        => ['string', 'max:255'],
             'publisher'   => ['string', 'max:255'],
             'series'      => ['string', 'max:255'],
-            'year'        => ['integer', 'max:' . \date('Y')],
+            'year'        => ['integer', 'max:' . date('Y')],
             'ISBN'        => ['string'],
             'description' => ['string', 'max:175'],
             'volume'      => ['integer', 'min:0', 'required_with:part', 'gte:part'],

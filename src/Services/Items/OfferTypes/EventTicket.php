@@ -2,6 +2,7 @@
 
 namespace Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes;
 
+use DateTimeInterface;
 use Helldar\Yandex\GoodsPrices\Helpers\Variables;
 use Illuminate\Validation\Rule;
 
@@ -38,7 +39,7 @@ class EventTicket extends BaseType
         return $this;
     }
 
-    public function date(\DateTimeInterface $date): self
+    public function date(DateTimeInterface $date): self
     {
         $this->addItem('date', $date->format('c'));
 

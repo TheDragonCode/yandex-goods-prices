@@ -2,6 +2,10 @@
 
 namespace Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes;
 
+use function date;
+use function implode;
+use function is_array;
+
 /**
  * @see https://yandex.ru/support/webmaster/goods-prices/technical-requirements.html#tag_11__audiobook
  */
@@ -70,7 +74,7 @@ class AudioBook extends BaseType
      */
     public function performedBy($values): self
     {
-        $value = \is_array($values) ? \implode(', ', $values) : $values;
+        $value = is_array($values) ? implode(', ', $values) : $values;
 
         $this->addItem('performed_by', $value);
 
@@ -140,7 +144,7 @@ class AudioBook extends BaseType
             'name'             => ['string', 'max:255'],
             'publisher'        => ['string', 'max:255'],
             'series'           => ['string', 'max:255'],
-            'year'             => ['before_or_equal:' . \date('Y')],
+            'year'             => ['before_or_equal:' . date('Y')],
             'ISBN'             => ['string'],
             'description'      => ['string', 'max:175'],
             'performed_by'     => ['string'],

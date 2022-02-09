@@ -2,6 +2,8 @@
 
 namespace Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes;
 
+use function date;
+
 /**
  * @see https://yandex.ru/support/webmaster/goods-prices/technical-requirements.html#tag_11__artist-title
  */
@@ -47,7 +49,7 @@ class Music extends BaseType
         return [
             'artist' => ['string', 'max:255'],
             'title'  => ['string', 'max:255'],
-            'year'   => ['integer', 'max:' . \date('Y')],
+            'year'   => ['integer', 'max:' . date('Y')],
             'media'  => ['string', 'max:255'],
         ];
     }

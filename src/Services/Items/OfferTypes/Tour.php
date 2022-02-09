@@ -2,6 +2,7 @@
 
 namespace Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes;
 
+use DateTimeInterface;
 use Helldar\Yandex\GoodsPrices\Helpers\Variables;
 use Illuminate\Validation\Rule;
 
@@ -45,7 +46,7 @@ class Tour extends BaseType
         return $this;
     }
 
-    public function dataTour(\DateTimeInterface $date): self
+    public function dataTour(DateTimeInterface $date): self
     {
         $this->addItem('dataTour', $date->format('Y-m-d'));
 

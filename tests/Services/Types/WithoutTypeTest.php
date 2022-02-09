@@ -22,17 +22,17 @@ class WithoutTypeTest extends TestCase
             ->price(200)
             ->get();
 
-        $source = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<offer id="1234" available="true">
-    <categoryId>2</categoryId>
-    <currencyId>2</currencyId>
-    <delivery>true</delivery>
-    <name>Foo Bar</name>
-    <price>200</price>
-    <url>http://example.com</url>
-</offer>
-XML;
+        $source = <<<'XML'
+            <?xml version="1.0" encoding="UTF-8"?>
+            <offer id="1234" available="true">
+                <categoryId>2</categoryId>
+                <currencyId>2</currencyId>
+                <delivery>true</delivery>
+                <name>Foo Bar</name>
+                <price>200</price>
+                <url>http://example.com</url>
+            </offer>
+            XML;
 
         $expected = new DOMDocument('1.0', 'utf-8');
         $expected->loadXML($source);

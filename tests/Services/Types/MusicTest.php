@@ -25,20 +25,20 @@ class MusicTest extends TestCase
             ->year(2019)
             ->get();
 
-        $source = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<offer id="1234" type="artist.title" available="true">
-    <artist>foo</artist>
-    <categoryId>2</categoryId>
-    <currencyId>USD</currencyId>
-    <delivery>true</delivery>
-    <media>file</media>
-    <price>200</price>
-    <title>bar</title>
-    <url>http://example.com</url>
-    <year>2019</year>
-</offer>
-XML;
+        $source = <<<'XML'
+            <?xml version="1.0" encoding="UTF-8"?>
+            <offer id="1234" type="artist.title" available="true">
+                <artist>foo</artist>
+                <categoryId>2</categoryId>
+                <currencyId>USD</currencyId>
+                <delivery>true</delivery>
+                <media>file</media>
+                <price>200</price>
+                <title>bar</title>
+                <url>http://example.com</url>
+                <year>2019</year>
+            </offer>
+            XML;
 
         $expected = new DOMDocument('1.0', 'utf-8');
         $expected->loadXML($source);

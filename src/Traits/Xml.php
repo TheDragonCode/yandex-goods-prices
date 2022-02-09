@@ -22,7 +22,7 @@ trait Xml
 
     private function xmlAppendChild(DOMElement &$parent, DOMElement $child, bool $skip_empty = true)
     {
-        if ($skip_empty && !$child) {
+        if ($skip_empty && ! $child) {
             return;
         }
 

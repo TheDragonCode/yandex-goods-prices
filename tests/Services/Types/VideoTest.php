@@ -29,24 +29,24 @@ class VideoTest extends TestCase
             ->year(2019)
             ->get();
 
-        $source = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<offer id="1234" type="artist.title" available="true">
-    <adult>true</adult>
-    <categoryId>2</categoryId>
-    <country>Россия</country>
-    <currencyId>RUB</currencyId>
-    <delivery>false</delivery>
-    <director>foo</director>
-    <media>file</media>
-    <originalName>foo</originalName>
-    <price>200</price>
-    <starring>foo, bar, baz</starring>
-    <title>foo</title>
-    <url>http://example.com</url>
-    <year>2019</year>
-</offer>
-XML;
+        $source = <<<'XML'
+            <?xml version="1.0" encoding="UTF-8"?>
+            <offer id="1234" type="artist.title" available="true">
+                <adult>true</adult>
+                <categoryId>2</categoryId>
+                <country>Россия</country>
+                <currencyId>RUB</currencyId>
+                <delivery>false</delivery>
+                <director>foo</director>
+                <media>file</media>
+                <originalName>foo</originalName>
+                <price>200</price>
+                <starring>foo, bar, baz</starring>
+                <title>foo</title>
+                <url>http://example.com</url>
+                <year>2019</year>
+            </offer>
+            XML;
 
         $expected = new DOMDocument('1.0', 'utf-8');
         $expected->loadXML($source);

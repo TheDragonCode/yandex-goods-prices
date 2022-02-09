@@ -9,7 +9,7 @@ use function strip_tags;
  */
 class WithoutType extends BaseType
 {
-    protected $type = null;
+    protected $type;
 
     public function __construct()
     {

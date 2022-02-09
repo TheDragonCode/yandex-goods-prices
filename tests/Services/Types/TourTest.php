@@ -34,28 +34,28 @@ class TourTest extends TestCase
             ->worldRegion('foo')
             ->get();
 
-        $source = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<offer id="1234" type="tour" available="true">
-    <categoryId>2</categoryId>
-    <country>Россия</country>
-    <currencyId>RUB</currencyId>
-    <dataTour>2019-03-29T00:00+00:00</dataTour>
-    <days>3</days>
-    <delivery>true</delivery>
-    <description>foo</description>
-    <hotel_stars>3</hotel_stars>
-    <included>foo</included>
-    <meal>HB</meal>
-    <name>foo</name>
-    <price>200</price>
-    <region>baz</region>
-    <room>SNG</room>
-    <transport>bar</transport>
-    <url>http://example.com</url>
-    <worldRegion>foo</worldRegion>
-</offer>
-XML;
+        $source = <<<'XML'
+            <?xml version="1.0" encoding="UTF-8"?>
+            <offer id="1234" type="tour" available="true">
+                <categoryId>2</categoryId>
+                <country>Россия</country>
+                <currencyId>RUB</currencyId>
+                <dataTour>2019-03-29T00:00+00:00</dataTour>
+                <days>3</days>
+                <delivery>true</delivery>
+                <description>foo</description>
+                <hotel_stars>3</hotel_stars>
+                <included>foo</included>
+                <meal>HB</meal>
+                <name>foo</name>
+                <price>200</price>
+                <region>baz</region>
+                <room>SNG</room>
+                <transport>bar</transport>
+                <url>http://example.com</url>
+                <worldRegion>foo</worldRegion>
+            </offer>
+            XML;
 
         $expected = new DOMDocument('1.0', 'utf-8');
         $expected->loadXML($source);

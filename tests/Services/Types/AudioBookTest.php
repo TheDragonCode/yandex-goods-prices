@@ -37,32 +37,32 @@ class AudioBookTest extends TestCase
             ->year(2019)
             ->get();
 
-        $source = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<offer id="1234" type="audiobook" available="true">
-    <ISBN>978-5-94878-004-7</ISBN>
-    <author>bar</author>
-    <categoryId>2</categoryId>
-    <currencyId>USD</currencyId>
-    <delivery>false</delivery>
-    <description>foo</description>
-    <format>DVD</format>
-    <language>foo</language>
-    <name>foo</name>
-    <part>3</part>
-    <performance_type>foo</performance_type>
-    <performed_by>foo</performed_by>
-    <price>200</price>
-    <publisher>foo</publisher>
-    <recording_length>200.30</recording_length>
-    <series>foo</series>
-    <storage>PDF</storage>
-    <table_of_contents>foo</table_of_contents>
-    <url>http://example.com</url>
-    <volume>4</volume>
-    <year>2019</year>
-</offer>
-XML;
+        $source = <<<'XML'
+            <?xml version="1.0" encoding="UTF-8"?>
+            <offer id="1234" type="audiobook" available="true">
+                <ISBN>978-5-94878-004-7</ISBN>
+                <author>bar</author>
+                <categoryId>2</categoryId>
+                <currencyId>USD</currencyId>
+                <delivery>false</delivery>
+                <description>foo</description>
+                <format>DVD</format>
+                <language>foo</language>
+                <name>foo</name>
+                <part>3</part>
+                <performance_type>foo</performance_type>
+                <performed_by>foo</performed_by>
+                <price>200</price>
+                <publisher>foo</publisher>
+                <recording_length>200.30</recording_length>
+                <series>foo</series>
+                <storage>PDF</storage>
+                <table_of_contents>foo</table_of_contents>
+                <url>http://example.com</url>
+                <volume>4</volume>
+                <year>2019</year>
+            </offer>
+            XML;
 
         $expected = new DOMDocument('1.0', 'utf-8');
         $expected->loadXML($source);

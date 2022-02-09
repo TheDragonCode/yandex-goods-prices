@@ -9,6 +9,9 @@ use Helldar\Yandex\GoodsPrices\Interfaces\Item;
 use Helldar\Yandex\GoodsPrices\Traits\Validator;
 use Helldar\Yandex\GoodsPrices\Traits\Xml;
 use Illuminate\Validation\Rule;
+use function compact;
+use function is_numeric;
+use function trim;
 
 /**
  * @see https://yandex.ru/support/webmaster/goods-prices/technical-requirements.html#concept3__currencies
@@ -24,9 +27,9 @@ class Currency implements Item
 
     public function id(string $id = 'RUB'): self
     {
-        $id = Str::upper(\trim($id));
+        $id = Str::upper(trim($id));
 
-        $this->validate(\compact('id'), [
+        $this->validate(compact('id'), [
             'id' => ['string', Rule::in(Variables::CURRENCIES)],
         ]);
 
@@ -42,10 +45,10 @@ class Currency implements Item
      */
     public function rate($rate = 'СВ'): self
     {
-        if (!\is_numeric($rate)) {
+        if (! is_numeric($rate)) {
             $rate = Str::upper($rate);
 
-            $this->validate(\compact('rate'), [
+            $this->validate(compact('rate'), [
                 'rate' => ['string', Rule::in(Variables::RATES)],
             ]);
         }
