@@ -1,33 +1,45 @@
 {
     "name": "andrey-helldar/yandex-goods-prices",
     "description": "Simple Yandex Markup Generator for Online Stores.",
-    "type": "library",
     "license": "MIT",
-    "keywords": ["goods", "goods-prices", "prices", "price", "yandex", "seo optimized", "seo", "shop", "e-shop"],
-    "support": {
-        "issues": "https://github.com/andrey-helldar/yandex-goods-prices/issues",
-        "source": "https://github.com/andrey-helldar/yandex-goods-prices"
-    },
+    "type": "library",
+    "keywords": [
+        "goods",
+        "goods-prices",
+        "prices",
+        "price",
+        "yandex",
+        "seo optimized",
+        "seo",
+        "shop",
+        "e-shop"
+    ],
     "authors": [
         {
             "name": "Andrey Helldar",
             "email": "helldar@ai-rus.com"
         }
     ],
+    "support": {
+        "issues": "https://github.com/andrey-helldar/yandex-goods-prices/issues",
+        "source": "https://github.com/andrey-helldar/yandex-goods-prices"
+    },
     "require": {
-        "php": ">=7.1.3|^8.0",
+        "php": ">=7.1.3 || ^8.0",
         "ext-dom": "*",
         "andrey-helldar/xml-core": "^1.0",
-        "illuminate/validation": "^5.6|^6.0|^7.0|^8.0",
-        "symfony/http-kernel": "^4.0|^5.0"
+        "illuminate/validation": "^5.6 || ^6.0 || ^7.0 || ^8.0",
+        "symfony/http-kernel": "^4.0 || ^5.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^3.8|^4.0",
-        "phpunit/phpunit": "^7.5|^8.0|^9.0"
+        "orchestra/testbench": "^3.8 || ^4.0",
+        "phpunit/phpunit": "^7.5 || ^8.0 || ^9.0"
     },
     "suggest": {
         "symfony/thanks": "Give thanks (in the form of a GitHub) to your fellow PHP package maintainers"
     },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Helldar\\Yandex\\GoodsPrices\\": "src/"
@@ -42,8 +54,6 @@
         "preferred-install": "dist",
         "sort-packages": true
     },
-    "minimum-stability": "stable",
-    "prefer-stable": true,
     "extra": {
         "laravel": {
             "providers": [
