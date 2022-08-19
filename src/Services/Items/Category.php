@@ -7,6 +7,7 @@ use Helldar\Core\Xml\Helpers\Str;
 use Helldar\Yandex\GoodsPrices\Interfaces\Item;
 use Helldar\Yandex\GoodsPrices\Traits\Validator;
 use Helldar\Yandex\GoodsPrices\Traits\Xml;
+
 use function compact;
 use function trim;
 

@@ -8,6 +8,7 @@ use Helldar\Yandex\GoodsPrices\Traits\Items\BaseMethods;
 use Helldar\Yandex\GoodsPrices\Traits\Items\BaseRules;
 use Helldar\Yandex\GoodsPrices\Traits\Validator;
 use Helldar\Yandex\GoodsPrices\Traits\Xml;
+
 use function array_push;
 use function compact;
 use function in_array;

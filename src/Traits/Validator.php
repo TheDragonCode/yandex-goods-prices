@@ -4,6 +4,7 @@ namespace Helldar\Yandex\GoodsPrices\Traits;
 
 use Helldar\Yandex\GoodsPrices\Exceptions\YandexGoodsPricesException;
 use Illuminate\Support\Facades\Validator as IlluminateValidator;
+
 use function array_merge;
 use function array_push;
 use function array_unique;

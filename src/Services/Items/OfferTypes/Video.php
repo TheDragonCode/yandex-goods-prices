@@ -4,6 +4,7 @@ namespace Helldar\Yandex\GoodsPrices\Services\Items\OfferTypes;
 
 use Helldar\Yandex\GoodsPrices\Helpers\Variables;
 use Illuminate\Validation\Rule;
+
 use function date;
 use function implode;
 use function is_array;

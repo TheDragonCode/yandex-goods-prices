@@ -9,6 +9,7 @@ use Helldar\Yandex\GoodsPrices\Interfaces\Item;
 use Helldar\Yandex\GoodsPrices\Traits\Validator;
 use Helldar\Yandex\GoodsPrices\Traits\Xml;
 use Illuminate\Validation\Rule;
+
 use function compact;
 use function is_numeric;
 use function trim;
