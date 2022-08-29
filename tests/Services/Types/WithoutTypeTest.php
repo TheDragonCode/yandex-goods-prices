@@ -49,7 +49,8 @@ class WithoutTypeTest extends TestCase
                 ->currencyId('USD')
                 ->categoryId(2)
                 ->get();
-        } catch (Exception $exception) {
+        }
+        catch (Exception $exception) {
             $this->assertEquals('The id field is required.', $exception->getMessage());
             $this->assertEquals(400, $exception->getCode());
         }

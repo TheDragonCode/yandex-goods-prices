@@ -72,7 +72,8 @@ class TourTest extends TestCase
                 ->currencyId('USD')
                 ->categoryId(2)
                 ->get();
-        } catch (Exception $exception) {
+        }
+        catch (Exception $exception) {
             $this->assertEquals('The id field is required.', $exception->getMessage());
             $this->assertEquals(400, $exception->getCode());
         }
@@ -92,7 +93,8 @@ class TourTest extends TestCase
                 ->get();
 
             $this->assertTrue(false);
-        } catch (Exception $exception) {
+        }
+        catch (Exception $exception) {
             $this->assertEquals('The days field is required.', $exception->getMessage());
             $this->assertEquals(400, $exception->getCode());
         }
@@ -116,7 +118,8 @@ class TourTest extends TestCase
                 ->get();
 
             $this->assertTrue(false);
-        } catch (Exception $exception) {
+        }
+        catch (Exception $exception) {
             $this->assertEquals('The selected currency id is invalid.', $exception->getMessage());
             $this->assertEquals(400, $exception->getCode());
         }

@@ -61,7 +61,8 @@ class EventTicketTest extends TestCase
                 ->categoryId(2)
                 ->name('foo')
                 ->get();
-        } catch (Exception $exception) {
+        }
+        catch (Exception $exception) {
             $this->assertEquals('The id field is required.', $exception->getMessage());
             $this->assertEquals(400, $exception->getCode());
         }
@@ -81,7 +82,8 @@ class EventTicketTest extends TestCase
                 ->get();
 
             $this->assertTrue(false);
-        } catch (Exception $exception) {
+        }
+        catch (Exception $exception) {
             $this->assertEquals('The name field is required.', $exception->getMessage());
             $this->assertEquals(400, $exception->getCode());
         }

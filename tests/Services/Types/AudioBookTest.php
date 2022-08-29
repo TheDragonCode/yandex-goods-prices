@@ -82,7 +82,8 @@ class AudioBookTest extends TestCase
                 ->author('bar')
                 ->year(2019)
                 ->get();
-        } catch (Exception $exception) {
+        }
+        catch (Exception $exception) {
             $this->assertEquals('The id field is required.', $exception->getMessage());
             $this->assertEquals(400, $exception->getCode());
         }

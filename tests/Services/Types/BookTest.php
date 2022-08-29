@@ -76,7 +76,8 @@ class BookTest extends TestCase
                 ->author('bar')
                 ->year(2019)
                 ->get();
-        } catch (Exception $exception) {
+        }
+        catch (Exception $exception) {
             $this->assertEquals('The id field is required.', $exception->getMessage());
             $this->assertEquals(400, $exception->getCode());
         }
@@ -98,7 +99,8 @@ class BookTest extends TestCase
                 ->get();
 
             $this->assertFalse(true);
-        } catch (Exception $exception) {
+        }
+        catch (Exception $exception) {
             $this->assertEquals('The name field is required.', $exception->getMessage());
             $this->assertEquals(400, $exception->getCode());
         }
